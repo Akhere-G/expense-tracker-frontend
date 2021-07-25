@@ -6,11 +6,7 @@ import {
 } from './AddTransactionForm.styled'
 
 import { TextField, Button } from '@material-ui/core'
-
-const toDateInputValue = () =>  {
-  const local = new Date();
-  return local.toJSON().slice(0,10);
-};
+import { toDateInputValue } from "../../utils"
 
 type Transaction = {
   amount: string;
