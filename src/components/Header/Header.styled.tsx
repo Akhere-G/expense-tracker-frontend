@@ -37,8 +37,10 @@ const bounce = keyframes`
 
 export const Logo = styled.span`
   margin-left: 1rem;
-  animation: ${bounce} 750ms linear 100ms;
-  color: #8f8;
+  animation: ${bounce} 750ms linear 1s;
+  animation-delay: 1s;
+  color: #ff8;
+
   & > svg {
   font-size: 2rem ;
 

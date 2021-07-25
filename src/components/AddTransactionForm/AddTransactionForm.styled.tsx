@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
 export const Form = styled.form`
+  background-color: white;
+  box-shadow: 1px 2px 3px #0008;
+  padding: 1rem;
+  margin: 1rem 0;
   display: flex;
   flex-direction: column;
 
@@ -9,10 +13,8 @@ export const Form = styled.form`
   }
 `
 
-export const Amount = styled.input``
+export const FormGroup = styled.div`
+  padding: 0.5rem 1rem;
+  width: 100%;
 
-export const Type = styled.select``
-
-export const Description = styled.input``
-
-export const Date = styled.input``
+`
