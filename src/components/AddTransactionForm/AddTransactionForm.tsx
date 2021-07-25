@@ -8,20 +8,27 @@ import {
 import { TextField, Button } from '@material-ui/core'
 import { toDateInputValue } from "../../utils"
 
-type Transaction = {
-  amount: string;
-  type: string;
-  description: string;
-  date: string;
-}
+import { Transaction, Category } from "../../types"
 
 const initialTransaction = {
   amount: '10',
   type: 'expense',
+  category: Category.None,
   description: '',
+
   date: toDateInputValue(),
 }
 
+const options = [
+  'none',
+  'groceries',
+  'travel',
+  'social',
+  'bills',
+  'clothes',
+  'invoice',
+  'gift'
+]
 const AddTransactionForm = () => {
   const [transaction, setTransaction] = useState<Transaction>(initialTransaction)
 
@@ -42,11 +49,20 @@ const AddTransactionForm = () => {
       </FormGroup>
 
       <FormGroup>
-        <TextField fullWidth select id="type" label="Type" value={transaction.type} onChange={(e: React.ChangeEvent<any>) => updateTransaction({ type: e.target.value })}>
+        <TextField fullWidth select label="Type" value={transaction.type} onChange={(e: React.ChangeEvent<any>) => updateTransaction({ type: e.target.value })}>
           <option value="income">income</option>
           <option value="expense">expense</option>
         </TextField>
       </FormGroup>
+
+      <FormGroup>
+        <TextField fullWidth select label="Category" value={transaction.category} onChange={(e: React.ChangeEvent<any>) => updateTransaction({ category: e.target.value })}>
+          {
+            options.map(o => <option value={o}>{o}</option>)
+          }
+        </TextField>
+      </FormGroup>
+
       
       <FormGroup>
         <TextField fullWidth multiline label="Description" value={transaction.description} onChange={(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => updateTransaction({ description: e.target.value })} />
