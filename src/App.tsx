@@ -1,13 +1,19 @@
 import React from 'react'
-import {AddTransactionForm,Balance,Footer,Header,Transactions} from "./components"
-function App () {
-  return <div>
-    <Header/>
-    <Balance/>
-    <AddTransactionForm />
-    <Transactions/>
+import './App.css'
+
+import { AddTransactionForm, Balance, Footer, Header, Transactions } from "./components"
+import { Main } from "./global"
+
+function App() {
+  return <>
+    <Header />
+    <Main>
+      <Balance/>
+      <AddTransactionForm />
+      <Transactions/>
+    </Main>
     <Footer />
-  </div>
+  </>
 }
 
 export default App

@@ -1,0 +1,30 @@
+:root{
+    --primary-bg: #48f;
+    --secondary-bg: #37e;
+
+    --primary-color: #eee;
+    --secondary-color: #ddd;
+    --focus: #fc6;
+    
+    --primary-bg-dark: #346;
+    --secondary-bg-dark: #235;
+
+    --transition: all ease-in 300ms;
+    --max-width: 900px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+body{ 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
