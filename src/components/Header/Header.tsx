@@ -1,5 +1,6 @@
 import React from 'react'
-import { FaRegMoneyBillAlt } from 'react-icons/fa'
+import { MonetizationOn } from '@material-ui/icons'
+
 import {Container, Wrapper, Logo,Title} from "./Header.styled"
 
 const Header = () => {
@@ -8,7 +9,7 @@ const Header = () => {
     <Container>
     <Title>Expense Tracker </Title>
       <Logo>
-        <FaRegMoneyBillAlt fontSize="2.5rem" />
+        <MonetizationOn   />
       </Logo>
     </Container>
     </Wrapper>

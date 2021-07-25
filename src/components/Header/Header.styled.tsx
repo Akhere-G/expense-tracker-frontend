@@ -8,7 +8,7 @@ export const Wrapper = styled.header`
 export const Container = styled.div`
   padding: 0.5rem 1rem;
   display: flex;
-  align-items: center ;
+  align-items: end;
 
 `
 const bounce = keyframes`
@@ -38,9 +38,13 @@ const bounce = keyframes`
 export const Logo = styled.span`
   margin-left: 1rem;
   animation: ${bounce} 750ms linear 100ms;
-  color: #8f8; 
+  color: #8f8;
+  & > svg {
+  font-size: 2rem ;
+
+  }
 `
 
 export const Title = styled.h1`
-  height: 2.5rem;
+  font-size: 2rem ;
 `
