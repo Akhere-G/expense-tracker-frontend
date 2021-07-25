@@ -1,6 +1,6 @@
 :root{
     --primary-bg: #48f;
-    --secondary-bg: #37e;
+    --secondary-bg: #eee;
 
     --primary-color: #eee;
     --secondary-color: #ddd;
@@ -27,4 +27,10 @@ html, body {
 
 body{ 
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: var(--secondary-bg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+
 }

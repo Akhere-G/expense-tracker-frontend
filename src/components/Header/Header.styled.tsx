@@ -37,7 +37,8 @@ const bounce = keyframes`
 
 export const Logo = styled.span`
   margin-left: 1rem;
-  animation: ${bounce} 750ms linear 100ms 
+  animation: ${bounce} 750ms linear 100ms;
+  color: #8f8; 
 `
 
 export const Title = styled.h1`
