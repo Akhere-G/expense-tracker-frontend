@@ -1,38 +1,45 @@
-:root{
-    --primary-bg: #48f;
-    --secondary-bg: #eee;
+:root {
+  --primary-bg: #48f;
+  --secondary-bg: #eee;
 
-    --primary-font: #223;
-    --secondary-font: #445;
-    --focus: #fc6;
-    
-    --primary-bg-dark: #346;
-    --secondary-bg-dark: #235;
+  --primary-font: #223;
+  --secondary-font: #445;
+  --focus: #fc6;
 
-    --transition: all ease-in 300ms;
-    --max-width: 900px;
+  --primary-bg-dark: #346;
+  --secondary-bg-dark: #235;
 
-    --box-shadow: 1px 2px 3px #0008;
+  --transition: all ease-in 300ms;
+  --max-width: 900px;
+
+  --box-shadow: 1px 2px 3px #0008;
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-html, body {
-    width: 100%;
-    overflow-x: hidden;
-    min-height: 100vh;
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-body{ 
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: var(--secondary-bg);
-    color: var(--primary-font);
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: var(--secondary-bg);
+  color: var(--primary-font);
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
 }

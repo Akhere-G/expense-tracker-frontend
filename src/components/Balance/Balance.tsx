@@ -1,6 +1,12 @@
-import React from 'react'
+import React from "react";
 
-import {Container, Details, Expenses, Income, Separator  } from './Balance.styled'
+import {
+  Container,
+  Details,
+  Expenses,
+  Income,
+  Separator,
+} from "./Balance.styled";
 
 const Balance = () => {
   return (
@@ -10,16 +16,15 @@ const Balance = () => {
         <Income>
           <h3>Income</h3>
           <p>0</p>
-        </Income>  
+        </Income>
         <Separator />
         <Expenses>
           <h3>Expenses</h3>
           <p>0</p>
-      </Expenses>
+        </Expenses>
       </Details>
-        
-      </Container>
-  )
-}
+    </Container>
+  );
+};
 
-export default Balance
+export default Balance;

@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Container = styled.div`
   background-color: #112;
@@ -8,4 +8,4 @@ export const Container = styled.div`
   & > h3 {
     margin-bottom: 1rem;
   }
-`
+`;

@@ -1,5 +1,5 @@
-import React from 'react'
-import {Container } from "./Footer.styled"
+import React from "react";
+import { Container } from "./Footer.styled";
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
       <h3>Expense Tracker</h3>
       <p>Copyright &#169; Akhere Ihoeghinlan</p>
     </Container>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

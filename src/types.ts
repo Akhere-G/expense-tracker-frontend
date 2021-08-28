@@ -1,24 +1,21 @@
 export type Transaction = {
-  id: number;
+  id: string;
   amount: string;
   type: string;
   category: Category;
-  description?: string;
+  description: string;
   date: string;
-}
-
+};
 
 export enum Category {
-  Misc = 'Misc',
-  Groceries = 'Groceries',
-  Travel = 'Travel',
-  Social = 'Social',
-  Rent = 'Rent',
-  Utilities = 'Utilities',
-  Phone = 'Phone',
-  Clothes = 'Clothes',
-  Invoice = 'Invoice',
-  Gifts = 'Gift',
-
-  
+  Misc = "Misc",
+  Groceries = "Groceries",
+  Travel = "Travel",
+  Social = "Social",
+  Rent = "Rent",
+  Utilities = "Utilities",
+  Phone = "Phone",
+  Clothes = "Clothes",
+  Invoice = "Invoice",
+  Gifts = "Gift",
 }

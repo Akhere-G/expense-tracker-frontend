@@ -1,16 +1,15 @@
-import styled, {keyframes} from 'styled-components'
+import styled, { keyframes } from "styled-components";
 
 export const Wrapper = styled.header`
   background-color: var(--primary-bg);
   color: white;
-`
+`;
 
 export const Container = styled.div`
   padding: 0.5rem 1rem;
   display: flex;
   align-items: end;
-
-`
+`;
 const bounce = keyframes`
   0% {
     transform: rotate(0deg)
@@ -33,7 +32,7 @@ const bounce = keyframes`
   }
 
 
-`
+`;
 
 export const Logo = styled.span`
   margin-left: 1rem;
@@ -42,11 +41,10 @@ export const Logo = styled.span`
   color: #ff8;
 
   & > svg {
-  font-size: 2rem ;
-
+    font-size: 2rem;
   }
-`
+`;
 
 export const Title = styled.h1`
-  font-size: 2rem ;
-`
+  font-size: 2rem;
+`;

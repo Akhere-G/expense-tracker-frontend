@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Form = styled.form`
   background-color: white;
@@ -11,10 +11,9 @@ export const Form = styled.form`
   & > h2 {
     padding-bottom: 1rem;
   }
-`
+`;
 
 export const FormGroup = styled.div`
   padding: 0.5rem 1rem;
   width: 100%;
-
-`
+`;
