@@ -4,7 +4,7 @@ export const Container = styled.section`
   margin: 0 auto;
   padding: 1rem;
   background-color: white;
-  box-shadow: 1px 2px 4px #0008;
+  box-shadow: var(--box-shadow);
   width: min-content;
   text-align: center;
   & > h2 {

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Form = styled.form`
   background-color: white;
-  box-shadow: 1px 2px 3px #0008;
+  box-shadow: var(--box-shadow);
   padding: 1rem;
   margin: 1rem 0;
   display: flex;

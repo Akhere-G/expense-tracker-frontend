@@ -2,7 +2,7 @@ import styled, {keyframes} from 'styled-components'
 
 export const Wrapper = styled.header`
   background-color: var(--primary-bg);
-  color: var(--primary-color);
+  color: white;
 `
 
 export const Container = styled.div`

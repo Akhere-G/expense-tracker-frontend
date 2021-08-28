@@ -2,8 +2,8 @@
     --primary-bg: #48f;
     --secondary-bg: #eee;
 
-    --primary-color: #eee;
-    --secondary-color: #ddd;
+    --primary-font: #223;
+    --secondary-font: #445;
     --focus: #fc6;
     
     --primary-bg-dark: #346;
@@ -11,6 +11,8 @@
 
     --transition: all ease-in 300ms;
     --max-width: 900px;
+
+    --box-shadow: 1px 2px 3px #0008;
 }
 
 * {
@@ -28,6 +30,7 @@ html, body {
 body{ 
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: var(--secondary-bg);
+    color: var(--primary-font);
 }
 
 h1, h2, h3, h4, h5, h6 {
