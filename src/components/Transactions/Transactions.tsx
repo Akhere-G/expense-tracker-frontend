@@ -6,6 +6,7 @@ import { Transaction as ITransaction, Category } from "../../types"
 
 const transactions: ITransaction[] = [
   {
+    id: 1,
     amount: '10',
     type: 'expense',
     description: 'Shopping',
@@ -13,18 +14,23 @@ const transactions: ITransaction[] = [
     date: '2021-01-02',
   },
   {
+    id: 2,
     amount: '35',
     type: 'income',
     description: 'gift',
     category: Category.None,
     date: '2021-03-07',
-  },{
+  },
+  {
+    id: 3,
     amount: '42',
     type: 'expense',
     description: 'bills',
     category: Category.Bills,
     date: '2021-06-23',
-  },{
+  },
+  {
+    id: 4,
     amount: '50',
     type: 'income',
     description: 'gift from work',
@@ -36,7 +42,7 @@ const transactions: ITransaction[] = [
 const Transactions = () => {
   return (
     <>
-      {transactions.map(transaction => <Transaction {...transaction} />)}
+      {transactions.map(transaction => <Transaction key={transaction.id} {...transaction} />)}
     </>
   )
 }

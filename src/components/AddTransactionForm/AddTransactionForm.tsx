@@ -11,6 +11,7 @@ import { toDateInputValue } from "../../utils"
 import { Transaction, Category } from "../../types"
 
 const initialTransaction = {
+  id: 0,
   amount: '10',
   type: 'expense',
   category: Category.None,
