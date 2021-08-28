@@ -18,15 +18,15 @@ const transactions: ITransaction[] = [
     amount: '35',
     type: 'income',
     description: 'gift',
-    category: Category.None,
+    category: Category.Misc,
     date: '2021-03-07',
   },
   {
     id: 3,
     amount: '42',
     type: 'expense',
-    description: 'bills',
-    category: Category.Bills,
+    description: 'Water bill',
+    category: Category.Utilities,
     date: '2021-06-23',
   },
   {

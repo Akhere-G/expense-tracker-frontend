@@ -9,12 +9,16 @@ export type Transaction = {
 
 
 export enum Category {
-  None = 'none',
-  Groceries = 'groceries',
-  Travel = 'travel',
-  Social = 'social',
-  Bills = 'bills',
-  Clothes = 'clothes',
-  Invoice = 'invoice',
-  Gifts = 'gift'
+  Misc = 'Misc',
+  Groceries = 'Groceries',
+  Travel = 'Travel',
+  Social = 'Social',
+  Rent = 'Rent',
+  Utilities = 'Utilities',
+  Phone = 'Phone',
+  Clothes = 'Clothes',
+  Invoice = 'Invoice',
+  Gifts = 'Gift',
+
+  
 }

@@ -14,21 +14,23 @@ const initialTransaction = {
   id: 0,
   amount: '10',
   type: 'expense',
-  category: Category.None,
+  category: Category.Misc,
   description: '',
 
   date: toDateInputValue(),
 }
 
 const options = [
-  'none',
-  'groceries',
-  'travel',
-  'social',
-  'bills',
-  'clothes',
-  'invoice',
-  'gift'
+  'Misc',
+  'Groceries',
+  'Travel',
+  'Social',
+  'Rent',
+  'Utilities',
+  'Phone',
+  'Clothes',
+  'Invoice',
+  'Gift',
 ]
 const AddTransactionForm = () => {
   const [transaction, setTransaction] = useState<Transaction>(initialTransaction)
