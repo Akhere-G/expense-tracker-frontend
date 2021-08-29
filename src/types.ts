@@ -24,3 +24,16 @@ export type Balance = {
   income: number;
   expenses: number;
 };
+
+export const Options = [
+  Category.Misc,
+  Category.Groceries,
+  Category.Invoice,
+  Category.Rent,
+  Category.Travel,
+  Category.Social,
+  Category.Utilities,
+  Category.Phone,
+  Category.Clothes,
+  Category.Gifts,
+];
