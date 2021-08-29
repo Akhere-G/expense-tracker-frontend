@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Close, Edit } from "@material-ui/icons";
+import { IconButton } from "@material-ui/core";
 
 export const Main = styled.main`
   margin: 0 auto;
@@ -8,14 +8,7 @@ export const Main = styled.main`
   padding: 1rem;
 `;
 
-export const CloseButton = styled(Close)`
-  &:hover {
-    color: #888;
-    cursor: pointer;
-  }
-`;
-
-export const EditButton = styled(Edit)`
+export const StyledButton = styled(IconButton)`
   &:hover {
     color: #888;
     cursor: pointer;

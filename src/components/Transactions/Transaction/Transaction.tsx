@@ -7,7 +7,8 @@ import {
   TransactionContainer,
 } from "../Transaction.styled";
 
-import { CloseButton, EditButton } from "../../../global";
+import { StyledButton } from "../../../global";
+import { Close, Edit } from "@material-ui/icons";
 
 export interface Props extends ITransaction {
   hideSeparator?: boolean;
@@ -36,13 +37,17 @@ const Transaction: FC<Props> = ({
         </Type>
         <UnderText>{category}</UnderText>
       </td>
-      <td>
-        <EditButton />
-        <CloseButton
+      <td style={{ textAlign: "right" }}>
+        <StyledButton>
+          <Edit fontSize="small" />
+        </StyledButton>
+        <StyledButton
           onClick={() =>
             deleteTransaction({ id, amount, category, date, type, description })
           }
-        />
+        >
+          <Close fontSize="small" />
+        </StyledButton>
       </td>
       <Separator hide={hideSeparator} />
     </TransactionContainer>

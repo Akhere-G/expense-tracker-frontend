@@ -10,7 +10,8 @@ export const TransactionList = styled.table`
 export const TransactionContainer = styled.tr`
   position: relative;
   & td {
-    padding: 1rem;
+    padding: 0.5rem;
+    padding-left: 1rem;
     width: min-content;
   }
 `;

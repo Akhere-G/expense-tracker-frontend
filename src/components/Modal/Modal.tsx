@@ -1,17 +1,20 @@
 import React, { FC } from "react";
 import { Background, ModalContainer, Header, Content } from "./Modal.styled";
+import { Close } from "@material-ui/icons";
 
-import { CloseButton } from "../../global";
+import { StyledButton } from "../../global";
 
 const Modal: FC<{
-  show: boolean;
-  setShow: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ show, setShow, children }) => {
+  isVisible: boolean;
+  closeModal: () => void;
+}> = ({ isVisible, closeModal, children }) => {
   return (
-    <Background show={show}>
+    <Background isVisible={isVisible}>
       <ModalContainer>
         <Header>
-          <CloseButton fontSize="small" onClick={() => setShow(false)} />
+          <StyledButton onClick={() => closeModal()}>
+            <Close fontSize="small" />
+          </StyledButton>
         </Header>
         <Content>{children}</Content>
       </ModalContainer>

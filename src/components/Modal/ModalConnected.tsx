@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "./Modal";
+import { actionCreators } from "../../actions/modalActions";
+import { RootState } from "../../reducers/rootReducer";
 
 const ModalConnected = () => {
-  const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
+  const { isVisible, content } = useSelector((state: RootState) => state.modal);
+  const closeModal = () => dispatch(actionCreators.setIsVisible(false));
 
   return (
-    <Modal show={show} setShow={setShow}>
-      <h2>Delete</h2>
+    <Modal isVisible={isVisible} closeModal={closeModal}>
+      {content}
     </Modal>
   );
 };
