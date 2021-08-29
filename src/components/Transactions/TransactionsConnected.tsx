@@ -8,6 +8,7 @@ import Transactions from "./Transactions";
 import { Category, Transaction } from "../../types";
 
 import { actionCreators } from "../../actions/transactionActions";
+import { RootState } from "../../reducers/rootReducer";
 
 const initialTransactions: Transaction[] = [
   {
@@ -20,7 +21,7 @@ const initialTransactions: Transaction[] = [
   },
   {
     id: "2",
-    amount: "35",
+    amount: "5",
     type: "income",
     description: "gift",
     category: Category.Misc,
@@ -28,7 +29,7 @@ const initialTransactions: Transaction[] = [
   },
   {
     id: "3",
-    amount: "42",
+    amount: "20",
     type: "expense",
     description: "Water bill",
     category: Category.Utilities,
@@ -36,7 +37,7 @@ const initialTransactions: Transaction[] = [
   },
   {
     id: "4",
-    amount: "50",
+    amount: "10",
     type: "income",
     description: "gift from work",
     category: Category.Invoice,
@@ -44,17 +45,16 @@ const initialTransactions: Transaction[] = [
   },
 ];
 
-
 const TransactionsConnected = () => {
-  const dispatch =  useDispatch()
-  
-    const transactions = useSelector(
-      (state: TransactionState) => state.transactions
-    );
-  
+  const dispatch = useDispatch();
+
+  const transactions = useSelector(
+    (state: RootState) => state.transaction.transactions
+  );
+
   useEffect(() => {
-    dispatch(actionCreators.setTransactions(initialTransactions))
-  }, [dispatch])
+    dispatch(actionCreators.setTransactions(initialTransactions));
+  }, [dispatch]);
   return <Transactions transactions={transactions} />;
 };
 
