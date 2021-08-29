@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, FC, useRef } from "react";
 
 import { Form, FormGroup } from "./AddTransactionForm.styled";
 
@@ -8,10 +8,10 @@ import { toDateInputValue } from "../../utils";
 import { Transaction, Category } from "../../types";
 
 const initialTransaction = {
-  id: '0',
-  amount: "10",
+  id: "0",
+  amount: "",
   type: "expense",
-  category: Category.Misc,
+  category: Category.Groceries,
   description: "",
 
   date: toDateInputValue(),
@@ -29,9 +29,72 @@ const options = [
   "Invoice",
   "Gift",
 ];
-const AddTransactionForm = () => {
+
+interface IAddTransactionForm {
+  addTransaction: (transaction: Transaction) => void;
+}
+
+interface ErrorMessages {
+  [key: string]: string;
+}
+
+const AddTransactionForm: FC<IAddTransactionForm> = ({ addTransaction }) => {
   const [transaction, setTransaction] =
     useState<Transaction>(initialTransaction);
+  const [errorMessages, setErrorMessages] = useState<ErrorMessages>({});
+
+  let hasRendered = useRef(false);
+
+  useEffect(() => {
+    if (!hasRendered.current) {
+      setTimeout(() => (hasRendered.current = true), 1000);
+      return;
+    }
+    if (
+      !transaction.amount ||
+      !transaction.amount.trim() ||
+      isNaN(Number(transaction.amount))
+    ) {
+      setErrorMessages((prev) => ({
+        ...prev,
+        amount: "Amount is not a number",
+      }));
+    } else {
+      setErrorMessages((prev) => ({ ...prev, amount: "" }));
+    }
+  }, [transaction.amount]);
+
+  useEffect(() => {
+    if (!hasRendered.current) {
+      setTimeout(() => (hasRendered.current = true), 5000);
+      return;
+    }
+    if (!transaction.description || !transaction.description.trim()) {
+      setErrorMessages((prev) => ({
+        ...prev,
+        description: "description is missing",
+      }));
+    } else if (transaction.description.length > 30) {
+      setErrorMessages((prev) => ({
+        ...prev,
+        description: "description is too long",
+      }));
+    } else {
+      setErrorMessages((prev) => ({ ...prev, description: "" }));
+    }
+  }, [transaction.description]);
+
+  useEffect(() => {
+    if (!hasRendered.current) {
+      setTimeout(() => (hasRendered.current = true), 1000);
+      return;
+    }
+    if (!transaction.date || !transaction.date.trim()) {
+      setErrorMessages((prev) => ({ ...prev, date: "date is missing" }));
+    } else {
+      setErrorMessages((prev) => ({ ...prev, date: "" }));
+    }
+  }, [transaction.date]);
 
   const updateTransaction = (currentState: Partial<Transaction>) => {
     setTransaction((prev) => ({ ...prev, ...currentState }));
@@ -39,6 +102,10 @@ const AddTransactionForm = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (Object.entries(errorMessages).length === 0) {
+      return;
+    }
+    addTransaction(transaction);
     updateTransaction({ ...initialTransaction });
   };
 
@@ -53,6 +120,8 @@ const AddTransactionForm = () => {
           onChange={(
             e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
           ) => updateTransaction({ amount: e.target.value })}
+          error={!!errorMessages?.amount}
+          helperText={errorMessages?.amount}
         />
       </FormGroup>
 
@@ -82,7 +151,9 @@ const AddTransactionForm = () => {
           }
         >
           {options.map((o) => (
-            <option value={o}>{o}</option>
+            <option key={o} value={o}>
+              {o}
+            </option>
           ))}
         </TextField>
       </FormGroup>
@@ -96,6 +167,8 @@ const AddTransactionForm = () => {
           onChange={(
             e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
           ) => updateTransaction({ description: e.target.value })}
+          error={!!errorMessages?.description}
+          helperText={errorMessages?.description}
         />
       </FormGroup>
 
@@ -108,6 +181,8 @@ const AddTransactionForm = () => {
           onChange={(
             e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
           ) => updateTransaction({ date: e.target.value })}
+          error={!!errorMessages?.date}
+          helperText={errorMessages?.date}
         />
       </FormGroup>
 
