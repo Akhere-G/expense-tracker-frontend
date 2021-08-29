@@ -16,7 +16,7 @@ const App = () => {
       <Header />
       <Main>
         <Balance />
-        <Modal/>
+        <Modal />
         <AddTransactionForm />
         <Transactions />
       </Main>

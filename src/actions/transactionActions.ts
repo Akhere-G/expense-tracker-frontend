@@ -2,10 +2,10 @@ import { Transaction, Balance } from "../types";
 
 export const SET_IS_LOADING = "transaction/SET_IS_LOADING";
 export const SET_TRANSACTIONS = "transaction/SET_TRANSACTIONS";
-export const ADD_TRANSACTION = "transaction/SET_TRANSACTION";
-export const UPDATE_TRANSACTION = "transaction/SET_TRANSACTION";
-export const DELETE_TRANSACTION = "transaction/SET_TRANSACTION";
-export const FETCH_TRANSACTIONS = "transaction/SET_TRANSACTIONS";
+export const ADD_TRANSACTION = "transaction/ADD_TRANSACTION";
+export const UPDATE_TRANSACTION = "transaction/UPDATE_TRANSACTION";
+export const DELETE_TRANSACTION = "transaction/DELETE_TRANSACTION";
+export const FETCH_TRANSACTIONS = "transaction/FETCH_TRANSACTIONS";
 export const SET_BALANCE = "transaction/SET_BALANCE";
 
 type Actions = {

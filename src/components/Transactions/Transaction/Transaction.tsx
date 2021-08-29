@@ -9,17 +9,20 @@ import {
 
 import { CloseButton, EditButton } from "../../../global";
 
-interface Props extends ITransaction {
+export interface Props extends ITransaction {
   hideSeparator?: boolean;
+  deleteTransaction: (transaction: ITransaction) => void;
 }
 
 const Transaction: FC<Props> = ({
+  id,
   amount,
   category,
   date,
   type,
   description,
   hideSeparator,
+  deleteTransaction,
 }) => {
   return (
     <TransactionContainer>
@@ -35,7 +38,11 @@ const Transaction: FC<Props> = ({
       </td>
       <td>
         <EditButton />
-        <CloseButton />
+        <CloseButton
+          onClick={() =>
+            deleteTransaction({ id, amount, category, date, type, description })
+          }
+        />
       </td>
       <Separator hide={hideSeparator} />
     </TransactionContainer>
