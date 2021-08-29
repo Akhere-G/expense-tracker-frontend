@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "./actions/transactionActions";
@@ -9,6 +9,7 @@ import {
   Footer,
   Header,
   Transactions,
+  Modal,
 } from "./components";
 import { Main } from "./global";
 import {
@@ -66,11 +67,17 @@ const App = () => {
   const balance = useSelector<TransactionState>(
     (state) => state.balance
   ) as IBalance;
+
+  const [show, setShow] = useState(true);
+
   return (
     <>
       <Header />
       <Main>
         <Balance {...balance} />
+        <Modal show={show} setShow={setShow}>
+          <h2>Delete</h2>
+        </Modal>
         <AddTransactionForm
           addTransaction={(transaction: ITransaction) =>
             dispatch(addTransaction(transaction))
