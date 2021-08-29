@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC, useRef } from "react";
+import React, { useState, useEffect, FC, useCallback, useRef } from "react";
 
 import { Form, FormGroup } from "./AddTransactionForm.styled";
 
@@ -45,56 +45,77 @@ const AddTransactionForm: FC<IAddTransactionForm> = ({ addTransaction }) => {
 
   let hasRendered = useRef(false);
 
-  useEffect(() => {
+  const isValidAmount = useCallback((amount: string) => {
     if (!hasRendered.current) {
       setTimeout(() => (hasRendered.current = true), 1000);
-      return;
+      return false;
     }
-    if (
-      !transaction.amount ||
-      !transaction.amount.trim() ||
-      isNaN(Number(transaction.amount))
-    ) {
+    if (!amount || !amount.trim() || isNaN(Number(amount))) {
       setErrorMessages((prev) => ({
         ...prev,
         amount: "Amount is not a number",
       }));
+      return false;
+    } else if (Number(amount) < 0) {
+      setErrorMessages((prev) => ({
+        ...prev,
+        amount: "Amount is less than zero",
+      }));
+      return false;
     } else {
       setErrorMessages((prev) => ({ ...prev, amount: "" }));
+      return true;
     }
-  }, [transaction.amount]);
+  }, []);
 
-  useEffect(() => {
+  const isValidDescription = useCallback((description: string) => {
     if (!hasRendered.current) {
       setTimeout(() => (hasRendered.current = true), 5000);
-      return;
+      return false;
     }
-    if (!transaction.description || !transaction.description.trim()) {
+    if (!description || !description.trim()) {
       setErrorMessages((prev) => ({
         ...prev,
         description: "description is missing",
       }));
-    } else if (transaction.description.length > 30) {
+      return false;
+    } else if (description.length > 30) {
       setErrorMessages((prev) => ({
         ...prev,
         description: "description is too long",
       }));
+      return false;
     } else {
       setErrorMessages((prev) => ({ ...prev, description: "" }));
+      return true;
     }
-  }, [transaction.description]);
+  }, []);
 
-  useEffect(() => {
+  const isValidDate = useCallback((date: string) => {
     if (!hasRendered.current) {
       setTimeout(() => (hasRendered.current = true), 1000);
-      return;
+      return false;
     }
-    if (!transaction.date || !transaction.date.trim()) {
+    if (!date || !date.trim()) {
       setErrorMessages((prev) => ({ ...prev, date: "date is missing" }));
+      return false;
     } else {
       setErrorMessages((prev) => ({ ...prev, date: "" }));
+      return true;
     }
-  }, [transaction.date]);
+  }, []);
+
+  useEffect(() => {
+    isValidAmount(transaction.amount);
+  }, [transaction.amount, isValidAmount]);
+
+  useEffect(() => {
+    isValidDescription(transaction.description);
+  }, [transaction.description, isValidDescription]);
+
+  useEffect(() => {
+    isValidDate(transaction.date);
+  }, [transaction.date, isValidDate]);
 
   const updateTransaction = (currentState: Partial<Transaction>) => {
     setTransaction((prev) => ({ ...prev, ...currentState }));
@@ -102,11 +123,15 @@ const AddTransactionForm: FC<IAddTransactionForm> = ({ addTransaction }) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (Object.entries(errorMessages).length === 0) {
-      return;
+    const { amount, description, date } = transaction;
+    if (
+      isValidAmount(amount) &&
+      isValidDescription(description) &&
+      isValidDate(date)
+    ) {
+      addTransaction(transaction);
+      updateTransaction({ ...initialTransaction });
     }
-    addTransaction(transaction);
-    updateTransaction({ ...initialTransaction });
   };
 
   return (

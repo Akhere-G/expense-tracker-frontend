@@ -12,12 +12,14 @@ import {
 import { Balance as IBalance } from "../../types";
 
 const Balance: FC<IBalance> = ({ income, expenses }) => {
-  const sign = income  >= expenses ? '+'  : '-'
+  const sign = income >= expenses ? "+" : "-";
   return (
     <Container>
       <BalanceDiv>
         <h2>Balance</h2>
-        <p>{sign}£{Math.abs(income - expenses)}</p>
+        <p>
+          {sign}£{Math.abs(income - expenses)}
+        </p>
       </BalanceDiv>
       <Details>
         <Income>
