@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 
 import {
   Container,
@@ -6,21 +6,28 @@ import {
   Expenses,
   Income,
   Separator,
+  BalanceDiv,
 } from "./Balance.styled";
 
-const Balance = () => {
+import { Balance as IBalance } from "../../types";
+
+const Balance: FC<IBalance> = ({ income, expenses }) => {
+  const sign = income  >= expenses ? '+'  : '-'
   return (
     <Container>
-      <h2>Balance</h2>
+      <BalanceDiv>
+        <h2>Balance</h2>
+        <p>{sign}£{Math.abs(income - expenses)}</p>
+      </BalanceDiv>
       <Details>
         <Income>
           <h3>Income</h3>
-          <p>0</p>
+          <p>+£{income}</p>
         </Income>
         <Separator />
         <Expenses>
           <h3>Expenses</h3>
-          <p>0</p>
+          <p>-£{expenses}</p>
         </Expenses>
       </Details>
     </Container>

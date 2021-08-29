@@ -35,3 +35,10 @@ export const Expenses = styled.span`
     color: red;
   }
 `;
+
+export const BalanceDiv = styled.span`
+  & > p {
+    position: relative;
+    transform: translateX(-5%);
+  }
+`;

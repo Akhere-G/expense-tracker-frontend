@@ -11,7 +11,11 @@ import {
   Transactions,
 } from "./components";
 import { Main } from "./global";
-import { Transaction as ITransaction, Category } from "./types";
+import {
+  Transaction as ITransaction,
+  Category,
+  Balance as IBalance,
+} from "./types";
 
 const initialTransactions: ITransaction[] = [
   {
@@ -53,17 +57,20 @@ const App = () => {
   const { addTransaction, setTransactions } = actionCreators;
   useEffect(() => {
     dispatch(setTransactions(initialTransactions));
-  }, [dispatch]);
+  }, [dispatch, setTransactions]);
 
   const transactions = useSelector<TransactionState>(
     (state) => state.transactions
   ) as ITransaction[];
 
+  const balance = useSelector<TransactionState>(
+    (state) => state.balance
+  ) as IBalance;
   return (
     <>
       <Header />
       <Main>
-        <Balance />
+        <Balance {...balance} />
         <AddTransactionForm
           addTransaction={(transaction: ITransaction) =>
             dispatch(addTransaction(transaction))

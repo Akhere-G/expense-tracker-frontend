@@ -19,3 +19,8 @@ export enum Category {
   Invoice = "Invoice",
   Gifts = "Gift",
 }
+
+export type Balance = {
+  income: number;
+  expenses: number;
+};

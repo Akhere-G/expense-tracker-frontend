@@ -1,4 +1,4 @@
-import { Transaction } from "../types";
+import { Transaction, Balance } from "../types";
 
 export const SET_IS_LOADING = "transaction/SET_IS_LOADING";
 export const SET_TRANSACTIONS = "transaction/SET_TRANSACTIONS";
@@ -6,11 +6,16 @@ export const ADD_TRANSACTION = "transaction/SET_TRANSACTION";
 export const UPDATE_TRANSACTION = "transaction/SET_TRANSACTION";
 export const DELETE_TRANSACTION = "transaction/SET_TRANSACTION";
 export const FETCH_TRANSACTIONS = "transaction/SET_TRANSACTIONS";
+export const SET_BALANCE = "transaction/SET_BALANCE";
 
 type Actions = {
   [SET_IS_LOADING]: {
     type: typeof SET_IS_LOADING;
     payload: { isLoading: boolean };
+  };
+  [SET_BALANCE]: {
+    type: typeof SET_BALANCE;
+    payload: { balance: Balance };
   };
   [SET_TRANSACTIONS]: {
     type: typeof SET_TRANSACTIONS;
@@ -36,6 +41,10 @@ export const actionCreators = {
   setIsLoading: (isLoading: boolean): Actions[typeof SET_IS_LOADING] => ({
     type: SET_IS_LOADING,
     payload: { isLoading },
+  }),
+  setBalance: (balance: Balance): Actions[typeof SET_BALANCE] => ({
+    type: SET_BALANCE,
+    payload: { balance },
   }),
   setTransactions: (
     transactions: Transaction[]
