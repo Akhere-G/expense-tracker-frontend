@@ -1,28 +1,29 @@
 import styled from "styled-components";
 
-export const TransactionContainer = styled.div`
-  background-color: white;
-  padding: 0.5rem;
+export const TransactionList = styled.table`
+  width: 100%;
+  border-collapse: collapse;
   box-shadow: var(--box-shadow);
-  display: flex;
-  justify-content: space-between;
+  background-color: white;
+`;
+
+export const TransactionContainer = styled.tr`
   position: relative;
-  &:after {
-    content: "";
-    width: calc(100% - 1rem);
-    bottom: 0;
-    position: absolute;
-    border-bottom: 1px solid #4485;
+  & td {
+    padding: 1rem;
+    width: min-content;
   }
 `;
 
-export const TransactionList = styled.div``;
-
-export const DescriptionAndDate = styled.div``;
-
-export const AmountAndCategory = styled.div`
-  text-align: right;
+export const Separator = styled.td<{ hide?: boolean }>`
+  width: 95% !important;
+  left: 2.5%;
+  bottom: 0;
+  position: absolute;
+  border-bottom: 1px solid #4477;
+  display: ${({ hide }) => (hide ? "none" : "initial")};
 `;
+
 export const Type = styled.p<{ type: string }>`
   color: ${({ type }) => (type === "expense" ? "red" : "green")};
 `;

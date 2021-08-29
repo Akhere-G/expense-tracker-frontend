@@ -1,32 +1,43 @@
 import React, { FC } from "react";
 import { Transaction as ITransaction } from "../../../types";
 import {
-  TransactionContainer,
-  DescriptionAndDate,
-  AmountAndCategory,
   UnderText,
   Type,
+  Separator,
+  TransactionContainer,
 } from "../Transaction.styled";
 
-const Transaction: FC<ITransaction> = ({
+import { CloseButton, EditButton } from "../../../global";
+
+interface Props extends ITransaction {
+  hideSeparator?: boolean;
+}
+
+const Transaction: FC<Props> = ({
   amount,
   category,
   date,
   type,
   description,
+  hideSeparator,
 }) => {
   return (
     <TransactionContainer>
-      <DescriptionAndDate>
+      <td>
         <p>{description}</p>
         <UnderText>{date}</UnderText>
-      </DescriptionAndDate>
-      <AmountAndCategory>
+      </td>
+      <td>
         <Type type={type}>
           {type === "expense" ? "-" : "+"}£{amount}
         </Type>
         <UnderText>{category}</UnderText>
-      </AmountAndCategory>
+      </td>
+      <td>
+        <EditButton />
+        <CloseButton />
+      </td>
+      <Separator hide={hideSeparator} />
     </TransactionContainer>
   );
 };
