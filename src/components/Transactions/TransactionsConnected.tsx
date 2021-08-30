@@ -90,8 +90,6 @@ const initialTransactions: Transaction[] = [
     category: Category.Utilities,
     date: "2021-08-26",
   },
-
-  
 ];
 
 const TransactionsConnected = () => {

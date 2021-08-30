@@ -8,13 +8,9 @@ export const Form = styled.form<{ isUpdateForm?: boolean }>`
   margin: 1rem 0;
   display: flex;
   flex-direction: column;
-
-  & > h2 {
-    padding-bottom: 1rem;
-  }
 `;
 
 export const FormGroup = styled.div`
-  padding: 0.5rem 1rem;
+  padding-bottom: 0.5rem;
   width: 100%;
 `;

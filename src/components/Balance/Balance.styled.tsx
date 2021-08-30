@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.section`
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0.5rem;
   background-color: white;
   box-shadow: var(--box-shadow);
   width: min-content;
@@ -10,11 +10,16 @@ export const Container = styled.section`
   & > h2 {
     font-weight: 300;
   }
+
+  @media screen and (min-width: 800px) {
+    width: 100%;
+  }
 `;
 
 export const Details = styled.article`
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 
 export const Income = styled.span`
@@ -25,7 +30,7 @@ export const Income = styled.span`
 
 export const Separator = styled.span`
   width: 1px;
-  height: 3rem;
+  height: 2rem;
   margin: 0.5rem 1rem;
   background-color: #0004;
 `;

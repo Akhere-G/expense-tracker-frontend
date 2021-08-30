@@ -16,18 +16,18 @@ const getGraphData = (transactions: Transaction[]) => {
     }
     acc[curr.category] = Number(curr.amount);
     return acc;
-  }, { } as GraphData)
+  }, {} as GraphData);
 
   const categories = Object.keys(graphData) as Category[];
   const data = Object.values(graphData);
 
-  return { categories, data}
-}
+  return { categories, data };
+};
 
 const GraphConnected = () => {
   const { transactions } = useSelector((state: RootState) => state.transaction);
-  
-  const { categories, data } = getGraphData(transactions)
+
+  const { categories, data } = getGraphData(transactions);
   return <Graph categories={categories} data={data} />;
 };
 
