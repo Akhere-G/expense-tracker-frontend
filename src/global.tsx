@@ -1,11 +1,17 @@
 import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
 
-export const Main = styled.main`
+export const Main = styled.div`
   margin: 0 auto;
   max-width: var(--max-width);
   min-height: 100vh;
   padding: 1rem;
+
+  @media screen and (min-width: 600px) {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+  }
 
   @media screen and (min-width: 1000px) {
     max-width: 95%;
@@ -14,15 +20,8 @@ export const Main = styled.main`
   @media screen and (min-width: 1400px) {
     max-width: 1300px;
   }
-`;
 
-export const CenterSection = styled.div`
-  @media screen and (min-width: 600px) {
-    display: flex;
-    margin-top: 1rem;
-    justify-content: center;
-    align-items: start;
-  }
+  
 `;
 
 export const LeftSection = styled.div`
