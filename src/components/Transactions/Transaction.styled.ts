@@ -12,7 +12,6 @@ export const TransactionContainer = styled.tr`
   & td {
     padding: 0.5rem;
     padding-left: 1rem;
-    width: min-content;
   }
 `;
 
