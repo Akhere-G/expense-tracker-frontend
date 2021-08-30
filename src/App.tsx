@@ -7,6 +7,7 @@ import {
   Header,
   Transactions,
   Modal,
+  Graph,
 } from "./components";
 import { Main } from "./global";
 
@@ -15,9 +16,10 @@ const App = () => {
     <>
       <Header />
       <Main>
-        <Balance />
         <Modal />
+        <Balance />
         <TransactionForm />
+        <Graph />
         <Transactions />
       </Main>
       <Footer />

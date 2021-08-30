@@ -18,7 +18,6 @@ export const modalReducer = (
   state: ModalState = initalState,
   action: ModalAction
 ) => {
-  console.log("modal reducer", state, action);
   switch (action.type) {
     case SET_CONTENT:
       return { ...state, content: action.payload.content };

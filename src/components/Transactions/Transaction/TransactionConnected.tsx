@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import Transaction from "./Transaction";
 import { Transaction as ITransaction } from "../../../types";
 import { actionCreators } from "../../../actions/transactionActions";
-import { actionCreators as modalActions } from "../../../actions/modalActions";
 import { useDispatch } from "react-redux";
 import { DeleteModal, TransactionForm } from "../../";
 
