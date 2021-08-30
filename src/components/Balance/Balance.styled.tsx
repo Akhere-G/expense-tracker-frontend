@@ -11,7 +11,7 @@ export const Container = styled.section`
     font-weight: 300;
   }
 
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 600px) {
     width: 100%;
   }
 `;

@@ -17,7 +17,7 @@ export const Main = styled.main`
 `;
 
 export const CenterSection = styled.div`
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 600px) {
     display: flex;
     margin-top: 1rem;
     justify-content: center;
@@ -26,14 +26,14 @@ export const CenterSection = styled.div`
 `;
 
 export const LeftSection = styled.div`
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 600px) {
     margin-right: 1rem;
     max-width: 40%;
   }
 `;
 
 export const RightSection = styled.div`
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 600px) {
     flex: 1;
     max-width: 60%;
   }
