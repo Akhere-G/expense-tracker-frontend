@@ -7,7 +7,10 @@ import { RootState } from "../../reducers/rootReducer";
 const ModalConnected = () => {
   const dispatch = useDispatch();
   const { isVisible, content } = useSelector((state: RootState) => state.modal);
-  const closeModal = () => dispatch(actionCreators.setIsVisible(false));
+  const closeModal = () => {
+    dispatch(actionCreators.setContent(<></>))
+    dispatch(actionCreators.setIsVisible(false))
+  };
 
   return (
     <Modal isVisible={isVisible} closeModal={closeModal}>

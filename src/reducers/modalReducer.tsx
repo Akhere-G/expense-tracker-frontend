@@ -11,7 +11,7 @@ export interface ModalState {
 
 const initalState: ModalState = {
   isVisible: false,
-  content: <div />,
+  content: <></>,
 };
 
 export const modalReducer = (
