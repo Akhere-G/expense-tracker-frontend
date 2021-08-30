@@ -30,14 +30,14 @@ const Transaction: FC<Props> = ({
   return (
     <TransactionContainer>
       <td>
-        <p>{description}</p>
-        <UnderText>{date}</UnderText>
+        <p key={description}>{description}</p>
+        <UnderText key={date}>{date}</UnderText>
       </td>
       <td style={{ textAlign: "center" }}>
-        <Type type={type}>
+        <Type type={type} key={amount + type}>
           {type === "expense" ? "-" : "+"}£{Number(amount).toFixed(2)}
         </Type>
-        <UnderText>{category}</UnderText>
+        <UnderText key={category}>{category}</UnderText>
       </td>
       <td style={{ textAlign: "right" }}>
         <StyledButton

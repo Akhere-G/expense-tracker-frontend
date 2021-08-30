@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { IconButton } from "@material-ui/core";
 
 export const Main = styled.div`
@@ -20,8 +20,6 @@ export const Main = styled.div`
   @media screen and (min-width: 1400px) {
     max-width: 1300px;
   }
-
-  
 `;
 
 export const LeftSection = styled.div`
@@ -42,4 +40,21 @@ export const StyledButton = styled(IconButton)`
     color: #888;
     cursor: pointer;
   }
+`;
+
+const floatUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(30%)
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0%)
+  }
+`;
+
+export const floatUpAnimation = css`
+  animation: ${floatUp} 700ms ease-in;
 `;

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { floatUpAnimation } from "../../global";
+
 export const TransactionList = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -12,6 +14,10 @@ export const TransactionContainer = styled.tr`
   & td {
     padding: 0.5rem;
     padding-left: 1rem;
+  }
+
+  & td p {
+    ${floatUpAnimation}
   }
 `;
 
@@ -26,9 +32,11 @@ export const Separator = styled.td<{ hide?: boolean }>`
 
 export const Type = styled.p<{ type: string }>`
   color: ${({ type }) => (type === "expense" ? "red" : "green")};
+  ${floatUpAnimation}
 `;
 
 export const UnderText = styled.p`
   font-size: 0.75rem;
   color: var(--secondary-font);
+  ${floatUpAnimation}
 `;

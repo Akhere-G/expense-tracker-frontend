@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { floatUpAnimation } from "../../global";
 
 export const Container = styled.section`
   margin: 0 auto;
@@ -25,6 +26,7 @@ export const Details = styled.article`
 export const Income = styled.span`
   & > p {
     color: green;
+    ${floatUpAnimation}
   }
 `;
 
@@ -38,12 +40,13 @@ export const Separator = styled.span`
 export const Expenses = styled.span`
   & > p {
     color: red;
+    ${floatUpAnimation}
   }
 `;
 
 export const BalanceDiv = styled.span`
   & > p {
     position: relative;
-    transform: translateX(-5%);
+    ${floatUpAnimation}
   }
 `;
