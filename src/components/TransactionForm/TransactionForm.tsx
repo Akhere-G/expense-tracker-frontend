@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Form, FormGroup } from "./AddTransactionForm.styled";
+import { Form, FormGroup } from "./TransactionForm.styled";
 import { TextField, Button } from "@material-ui/core";
 import { Options, Transaction } from "../../types";
 
@@ -10,17 +10,19 @@ interface Props {
   errorMessages: {
     [key: string]: string;
   };
+  isUpdateForm: boolean;
 }
 
-const AddTransactionForm: FC<Props> = ({
+const TransactionForm: FC<Props> = ({
   onSubmit,
   formData,
   updateFormData,
   errorMessages,
+  isUpdateForm,
 }) => {
   return (
-    <Form onSubmit={onSubmit}>
-      <h2>Add Transaction</h2>
+    <Form onSubmit={onSubmit} isUpdateForm={isUpdateForm}>
+      <h2>{isUpdateForm ? "Update" : "Add"} Transaction</h2>
       <FormGroup>
         <TextField
           fullWidth
@@ -101,10 +103,10 @@ const AddTransactionForm: FC<Props> = ({
         variant="contained"
         style={{ margin: "1rem" }}
       >
-        Add formData
+        {isUpdateForm ? "Update" : "Add"} transaction
       </Button>
     </Form>
   );
 };
 
-export default AddTransactionForm;
+export default TransactionForm;

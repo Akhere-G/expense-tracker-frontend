@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import {
-  AddTransactionForm,
+  TransactionForm,
   Balance,
   Footer,
   Header,
@@ -17,7 +17,7 @@ const App = () => {
       <Main>
         <Balance />
         <Modal />
-        <AddTransactionForm />
+        <TransactionForm />
         <Transactions />
       </Main>
       <Footer />

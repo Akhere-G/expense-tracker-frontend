@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export const Form = styled.form`
+export const Form = styled.form<{ isUpdateForm?: boolean }>`
   background-color: white;
-  box-shadow: var(--box-shadow);
-  padding: 1rem;
+  box-shadow: ${({ isUpdateForm }) =>
+    isUpdateForm ? "transparent" : "var(--box-shadow)"};
+  padding: ${({ isUpdateForm }) => (isUpdateForm ? "0rem" : "1rem")};
   margin: 1rem 0;
   display: flex;
   flex-direction: column;

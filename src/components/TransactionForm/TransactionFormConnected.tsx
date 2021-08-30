@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import { actionCreators } from "../../actions/transactionActions";
-import AddTransactionForm from "./AddTransactionForm";
+import TransactionForm from "./TransactionForm";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { FC, useState, useEffect, useCallback, useRef } from "react";
 import { toDateInputValue } from "../../utils";
 import { Transaction, Category } from "../../types";
 
@@ -20,8 +20,13 @@ interface ErrorMessages {
   [key: string]: string;
 }
 
-const AddTransactionFormConnected = () => {
-  const [formData, setTransaction] = useState<Transaction>(initialTransaction);
+const TransactionFormConnected: FC<{
+  transactionToUpdate?: Transaction;
+  closeModal?: () => void;
+}> = ({ transactionToUpdate, closeModal }) => {
+  const [formData, setTransaction] = useState<Transaction>(
+    transactionToUpdate || initialTransaction
+  );
   const [errorMessages, setErrorMessages] = useState<ErrorMessages>({});
 
   let hasRendered = useRef(false);
@@ -102,6 +107,12 @@ const AddTransactionFormConnected = () => {
     setTransaction((prev) => ({ ...prev, ...currentState }));
   };
 
+  const addTransaction = (formData: Transaction) =>
+    dispatch(actionCreators.addTransaction(formData));
+
+  const updateTransaction = (formData: Transaction) =>
+    dispatch(actionCreators.updateTransaction(formData));
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { amount, description, date } = formData;
@@ -110,22 +121,25 @@ const AddTransactionFormConnected = () => {
       isValidDescription(description) &&
       isValidDate(date)
     ) {
-      addTransaction(formData);
+      transactionToUpdate
+        ? updateTransaction(formData)
+        : addTransaction(formData);
       updateFormData({ ...initialTransaction });
+      closeModal && closeModal();
     }
   };
 
   const dispatch = useDispatch();
-  const addTransaction = (formData: Transaction) =>
-    dispatch(actionCreators.addTransaction(formData));
+
   return (
-    <AddTransactionForm
+    <TransactionForm
       errorMessages={errorMessages}
       formData={formData}
       onSubmit={onSubmit}
       updateFormData={updateFormData}
+      isUpdateForm={!!transactionToUpdate}
     />
   );
 };
 
-export default AddTransactionFormConnected;
+export default TransactionFormConnected;

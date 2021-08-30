@@ -1,4 +1,4 @@
-export { default as AddTransactionForm } from "./AddTransactionForm/AddTransactionFormConnected";
+export { default as TransactionForm } from "./TransactionForm/TransactionFormConnected";
 export { default as Balance } from "./Balance/BalanceConnected";
 export { default as Footer } from "./Footer/Footer";
 export { default as Header } from "./Header/Header";

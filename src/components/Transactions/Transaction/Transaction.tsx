@@ -13,6 +13,7 @@ import { Close, Edit } from "@material-ui/icons";
 export interface Props extends ITransaction {
   hideSeparator?: boolean;
   deleteTransaction: (transaction: ITransaction) => void;
+  updateTransaction: (transaction: ITransaction) => void;
 }
 
 const Transaction: FC<Props> = ({
@@ -24,6 +25,7 @@ const Transaction: FC<Props> = ({
   description,
   hideSeparator,
   deleteTransaction,
+  updateTransaction,
 }) => {
   return (
     <TransactionContainer>
@@ -31,14 +33,18 @@ const Transaction: FC<Props> = ({
         <p>{description}</p>
         <UnderText>{date}</UnderText>
       </td>
-      <td>
+      <td style={{ textAlign: "center" }}>
         <Type type={type}>
           {type === "expense" ? "-" : "+"}£{amount}
         </Type>
         <UnderText>{category}</UnderText>
       </td>
       <td style={{ textAlign: "right" }}>
-        <StyledButton>
+        <StyledButton
+          onClick={() =>
+            updateTransaction({ id, amount, category, date, type, description })
+          }
+        >
           <Edit fontSize="small" />
         </StyledButton>
         <StyledButton
