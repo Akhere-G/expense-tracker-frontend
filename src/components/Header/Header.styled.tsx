@@ -9,6 +9,7 @@ export const Container = styled.div`
   padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
+  box-shadow: 0px 1px 2px #0008;
 `;
 const bounce = keyframes`
   0% {

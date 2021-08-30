@@ -12,8 +12,8 @@ export const TransactionList = styled.table`
 export const TransactionContainer = styled.tr`
   position: relative;
   & td {
-    padding: 0.5rem;
-    padding-left: 1rem;
+    padding-left: 0.5rem;
+    padding-bottom: 0.25rem;
   }
 
   & td p {
