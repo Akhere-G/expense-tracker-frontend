@@ -10,8 +10,8 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  @media screen and (min-width: 700px) {
-    padding: 1rem;
+  @media screen and (min-width: 600px) {
+    padding: 0.5rem;
   }
   & > h2 {
     padding-bottom: 1rem;
