@@ -8,6 +8,10 @@ export const Form = styled.form<{ isUpdateForm?: boolean }>`
   margin: 1rem 0;
   display: flex;
   flex-direction: column;
+
+  & > button {
+    margin: 0.25rem 0rem 0rem!important;
+  }
 `;
 
 export const FormGroup = styled.div`
