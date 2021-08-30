@@ -18,18 +18,18 @@ const Balance: FC<IBalance> = ({ income, expenses }) => {
       <BalanceDiv>
         <h2>Balance</h2>
         <p>
-          {sign}£{Math.abs(income - expenses)}
+          {sign}£{Math.abs(income - expenses).toFixed(2)}
         </p>
       </BalanceDiv>
       <Details>
         <Income>
           <h3>Income</h3>
-          <p>+£{income}</p>
+          <p>+£{Number(income).toFixed(2)}</p>
         </Income>
         <Separator />
         <Expenses>
           <h3>Expenses</h3>
-          <p>-£{expenses}</p>
+          <p>-£{Number(expenses).toFixed(2)}</p>
         </Expenses>
       </Details>
     </Container>

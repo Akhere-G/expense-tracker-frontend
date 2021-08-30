@@ -35,7 +35,7 @@ const Transaction: FC<Props> = ({
       </td>
       <td style={{ textAlign: "center" }}>
         <Type type={type}>
-          {type === "expense" ? "-" : "+"}£{amount}
+          {type === "expense" ? "-" : "+"}£{Number(amount).toFixed(2)}
         </Type>
         <UnderText>{category}</UnderText>
       </td>
