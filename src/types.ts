@@ -17,7 +17,7 @@ export enum Category {
   Phone = "Phone",
   Clothes = "Clothes",
   Invoice = "Invoice",
-  Gifts = "Gift",
+  Gifts = "Gifts",
 }
 
 export type Balance = {
