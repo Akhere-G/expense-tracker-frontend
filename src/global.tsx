@@ -40,6 +40,11 @@ export const StyledButton = styled(IconButton)`
     color: #888;
     cursor: pointer;
   }
+
+  @media screen and (max-width: 400px) {
+    padding: 0.4rem !important;
+
+  }
 `;
 
 const floatUp = keyframes`
