@@ -10,7 +10,7 @@ export const Form = styled.form<{ isUpdateForm?: boolean }>`
   flex-direction: column;
 
   & > button {
-    margin: 0.25rem 0rem 0rem!important;
+    margin: 0.25rem 0rem 0rem !important;
   }
 `;
 

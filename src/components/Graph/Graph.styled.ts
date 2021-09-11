@@ -5,7 +5,6 @@ export const Container = styled.div`
   box-shadow: var(--box-shadow);
   padding: 1rem 4rem;
   padding-top: 2rem;
-  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;

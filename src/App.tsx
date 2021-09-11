@@ -9,7 +9,7 @@ import {
   Modal,
   Graph,
 } from "./components";
-import { Main, LeftSection, RightSection } from "./global";
+import { Main, LeftSection, CenterSection, RightSection } from "./global";
 
 const App = () => {
   return (
@@ -19,10 +19,12 @@ const App = () => {
         <LeftSection>
           <Balance />
           <TransactionForm />
-          <Graph />
         </LeftSection>
-        <RightSection>
+        <CenterSection>
           <Transactions />
+        </CenterSection>
+        <RightSection>
+          <Graph />
         </RightSection>
         <Modal />
       </Main>

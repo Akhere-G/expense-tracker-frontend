@@ -8,8 +8,8 @@ const ModalConnected = () => {
   const dispatch = useDispatch();
   const { isVisible, content } = useSelector((state: RootState) => state.modal);
   const closeModal = () => {
-    dispatch(actionCreators.setContent(<></>))
-    dispatch(actionCreators.setIsVisible(false))
+    dispatch(actionCreators.setContent(<></>));
+    dispatch(actionCreators.setIsVisible(false));
   };
 
   return (

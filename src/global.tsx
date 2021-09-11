@@ -3,14 +3,17 @@ import { IconButton } from "@material-ui/core";
 
 export const Main = styled.div`
   margin: 0 auto;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+
   max-width: var(--max-width);
   min-height: 100vh;
-  padding: 1rem;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 700px) {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: start;
+    flex-wrap: wrap;
   }
 
   @media screen and (min-width: 1000px) {
@@ -22,19 +25,30 @@ export const Main = styled.div`
   }
 `;
 
-export const LeftSection = styled.div`
-  @media screen and (min-width: 600px) {
-    margin-right: 1rem;
-    max-width: 40%;
-  }
+export const LeftSection = styled.section`
+  flex-grow: 0.25;
+  padding-top: 1rem;
+  padding-left: 1rem;
 `;
 
-export const RightSection = styled.div`
-  @media screen and (min-width: 600px) {
-    flex: 1;
-    max-width: 60%;
-  }
+export const CenterSection = styled.section`
+  flex-basis: 30%;
+  flex-grow: 0.85;
+  padding-top: 1rem;
+  padding-left: 1rem;
 `;
+
+export const RightSection = styled.section`
+  flex-basis: 20%;
+  flex-grow: 0.15;
+  flex-shrink: 1;
+
+  padding-top: 1rem;
+  padding-left: 1rem;
+
+  max-width: 50%;
+`;
+
 export const StyledButton = styled(IconButton)`
   &:hover {
     color: #888;
@@ -43,7 +57,6 @@ export const StyledButton = styled(IconButton)`
 
   @media screen and (max-width: 400px) {
     padding: 0.4rem !important;
-
   }
 `;
 
