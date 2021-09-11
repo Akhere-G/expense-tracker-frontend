@@ -9,7 +9,7 @@ import {
   Modal,
   Graph,
 } from "./components";
-import { Main, LeftSection, CenterSection, RightSection } from "./global";
+import { Main, LeftSection, CenterSection, RightSection } from "./utils/global";
 
 const App = () => {
   return (

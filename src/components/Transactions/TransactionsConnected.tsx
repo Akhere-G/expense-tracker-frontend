@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Transactions from "./Transactions";
 
-import { Category, Transaction } from "../../types";
+import { Category, Transaction } from "../../utils/types";
 
 import { actionCreators } from "../../actions/transactionActions";
 import { RootState } from "../../reducers/rootReducer";

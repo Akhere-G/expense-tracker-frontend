@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Background, ModalContainer, Header, Content } from "./Modal.styled";
 import { Close } from "@material-ui/icons";
 
-import { StyledButton } from "../../global";
+import { StyledButton } from "../../utils/global";
 
 const Modal: FC<{
   isVisible: boolean;

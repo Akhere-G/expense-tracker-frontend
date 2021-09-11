@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import Transaction from "./Transaction/TransactionConnected";
 
-import { Transaction as ITransaction } from "../../types";
+import { Transaction as ITransaction } from "../../utils/types";
 import { TransactionList } from "./Transaction.styled";
 
 const Transactions: FC<{ transactions: ITransaction[] }> = ({

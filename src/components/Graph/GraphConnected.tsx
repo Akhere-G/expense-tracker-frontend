@@ -2,7 +2,7 @@ import React from "react";
 import Graph from "./Graph";
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducers/rootReducer";
-import { Category, Transaction } from "../../types";
+import { Category, Transaction } from "../../utils/types";
 
 interface GraphData {
   [key: string]: number;

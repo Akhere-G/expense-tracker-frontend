@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { floatUpAnimation } from "../../global";
+import { floatUpAnimation } from "../../utils/global";
 
 export const TransactionList = styled.table`
   width: 100%;

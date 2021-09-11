@@ -9,7 +9,7 @@ import {
   BalanceDiv,
 } from "./Balance.styled";
 
-import { Balance as IBalance } from "../../types";
+import { Balance as IBalance } from "../../utils/types";
 
 const Balance: FC<IBalance> = ({ income, expenses }) => {
   const sign = income >= expenses ? "+" : "-";

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Form, FormGroup } from "./TransactionForm.styled";
 import { TextField, Button } from "@material-ui/core";
-import { Options, Transaction } from "../../types";
+import { Options, Transaction } from "../../utils/types";
 
 interface Props {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;

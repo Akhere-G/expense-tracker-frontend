@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Transaction as ITransaction } from "../../../types";
+import { Transaction as ITransaction } from "../../../utils/types";
 import {
   UnderText,
   Type,
@@ -7,7 +7,7 @@ import {
   TransactionContainer,
 } from "../Transaction.styled";
 
-import { StyledButton } from "../../../global";
+import { StyledButton } from "../../../utils/global";
 import { Close, Edit } from "@material-ui/icons";
 
 export interface Props extends ITransaction {

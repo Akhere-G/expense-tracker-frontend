@@ -1,11 +1,12 @@
 import React, { FC } from "react";
 import Transaction from "./Transaction";
-import { Transaction as ITransaction } from "../../../types";
+import { Transaction as ITransaction } from "../../../utils/types";
 import { actionCreators } from "../../../actions/transactionActions";
 import { useDispatch } from "react-redux";
 import { DeleteModal, TransactionForm } from "../../";
 
-import { useModal } from "../../../Hook";
+import { useModal } from "../../../utils/hook";
+
 interface Props extends ITransaction {
   hideSeparator?: boolean;
 }

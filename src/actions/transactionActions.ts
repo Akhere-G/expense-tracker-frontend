@@ -1,4 +1,4 @@
-import { Transaction, Balance } from "../types";
+import { Transaction, Balance } from "../utils/types";
 
 export const SET_IS_LOADING = "transaction/SET_IS_LOADING";
 export const SET_TRANSACTIONS = "transaction/SET_TRANSACTIONS";

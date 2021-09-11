@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { Category } from "../../types";
+import { Category } from "../../utils/types";
 import { Container } from "./Graph.styled";
 
 const mapToColor = (category: Category) => {

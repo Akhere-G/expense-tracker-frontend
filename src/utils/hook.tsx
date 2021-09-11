@@ -1,4 +1,4 @@
-import { actionCreators as modalActions } from "./actions/modalActions";
+import { actionCreators as modalActions } from "../actions/modalActions";
 import { useDispatch } from "react-redux";
 
 export const useModal = () => {

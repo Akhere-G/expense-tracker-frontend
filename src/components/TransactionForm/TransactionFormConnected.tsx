@@ -3,8 +3,8 @@ import { actionCreators } from "../../actions/transactionActions";
 import TransactionForm from "./TransactionForm";
 
 import React, { FC, useState, useEffect, useCallback, useRef } from "react";
-import { toDateInputValue } from "../../utils";
-import { Transaction, Category } from "../../types";
+import { toDateInputValue } from "../../utils/utils";
+import { Transaction, Category } from "../../utils/types";
 
 const initialTransaction = {
   id: "0",

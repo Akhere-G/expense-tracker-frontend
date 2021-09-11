@@ -7,7 +7,7 @@ import {
   UPDATE_TRANSACTION,
   SET_BALANCE,
 } from "../actions/transactionActions";
-import { Balance, Transaction } from "../types";
+import { Balance, Transaction } from "../utils/types";
 import { v4 as uuidv4 } from "uuid";
 
 export interface TransactionState {

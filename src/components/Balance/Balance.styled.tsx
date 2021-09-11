@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { floatUpAnimation } from "../../global";
+import { floatUpAnimation } from "../../utils/global";
 
 export const Container = styled.section`
   margin: 0 auto;
