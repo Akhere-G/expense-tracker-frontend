@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { IconButton } from "@material-ui/core";
 
-export const Main = styled.div`
+export const Main = styled.main`
   margin: 0 auto;
   padding-right: 1rem;
   padding-bottom: 1rem;

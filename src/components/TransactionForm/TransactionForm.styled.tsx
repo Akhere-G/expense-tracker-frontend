@@ -5,9 +5,11 @@ export const Form = styled.form<{ isUpdateForm?: boolean }>`
   box-shadow: ${({ isUpdateForm }) =>
     isUpdateForm ? "transparent" : "var(--box-shadow)"};
   padding: ${({ isUpdateForm }) => (isUpdateForm ? "0rem" : "1rem")};
-  margin: 1rem 0;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
+
+  height: 100%;
 
   & > button {
     margin: 0.25rem 0rem 0rem !important;
