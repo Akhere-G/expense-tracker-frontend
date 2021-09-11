@@ -46,7 +46,7 @@ export const RightSection = styled.section`
   padding-top: 1rem;
   padding-left: 1rem;
 
-  max-width: 50%;
+  max-width: 60%;
 `;
 
 export const StyledButton = styled(IconButton)`
