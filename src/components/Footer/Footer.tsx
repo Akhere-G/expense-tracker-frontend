@@ -1,12 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import { Container } from "./Footer.styled";
-import { useLocation } from "react-router-dom";
 
-const Footer = () => {
-  const { pathname } = useLocation();
-
+const Footer: FC<{ isOnLoginPage: boolean }> = ({ isOnLoginPage }) => {
   return (
-    <Container isOnLoginPage={pathname.toLowerCase() === "/login"}>
+    <Container isOnLoginPage={isOnLoginPage}>
       <h3>Expense Tracker</h3>
       <p>Copyright &#169; Akhere Ihoeghinlan</p>
     </Container>

@@ -1,16 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import { MonetizationOn } from "@material-ui/icons";
-import { useLocation } from "react-router-dom";
 
 import { Container, Wrapper, RightSection, Logo, Title } from "./Header.styled";
 
-const Header = () => {
-  const { pathname } = useLocation();
-
-  const loginPages = ["/", "/login", "/register"];
-
-  const isOnLoginPage = loginPages.includes(pathname.toLowerCase());
-
+const Header: FC<{ isOnLoginPage: boolean }> = ({ isOnLoginPage }) => {
   return (
     <Wrapper isOnLoginPage={isOnLoginPage}>
       <Container isOnLoginPage={isOnLoginPage}>

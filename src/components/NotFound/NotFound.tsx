@@ -1,6 +1,7 @@
 import React from "react";
 import { Error } from "@material-ui/icons";
-import { Section, Title, StyledLink } from "./NotFound.styled";
+import { Section, Title } from "./NotFound.styled";
+import { StyledLink } from "../../utils/global";
 
 const NotFound = () => {
   return (

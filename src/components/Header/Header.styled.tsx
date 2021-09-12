@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { floatUp } from "../../utils/global";
 
 interface Props {
   isOnLoginPage: boolean;
@@ -55,6 +56,8 @@ export const RightSection = styled.div<Props>`
   margin-right: auto;
 
   transition: all 500ms ease-in;
+  animation: ${floatUp} 300ms ease-in 300ms;
+  animation-fill-mode: backwards;
 `;
 
 export const Logo = styled.span`

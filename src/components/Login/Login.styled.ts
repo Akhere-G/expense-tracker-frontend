@@ -1,15 +1,11 @@
 import styled from "styled-components";
-import { paper } from "../../utils/global";
+import { modalStyles, paperStyles, floatUp } from "../../utils/global";
+
+export const Header = styled.div``;
 
 export const Container = styled.div<{ show: boolean }>`
-  ${paper};
-  position: absolute;
-  z-index: 3;
-  margin: auto;
-  top: 8rem;
-  left: 25%;
-  width: 50%;
-
-  opacity: ${({ show }) => (show ? "1" : "0")};
-  transition: var(--transition);
+  ${modalStyles}
+  ${paperStyles}
+  animation: ${floatUp} 400ms ease-in 600ms;
+  animation-fill-mode: backwards;
 `;

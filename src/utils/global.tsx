@@ -1,7 +1,8 @@
 import styled, { css, keyframes } from "styled-components";
 import { IconButton } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
-export const paper = css`
+export const paperStyles = css`
   background: white;
   box-shadow: var(--box-shadow);
   padding: 1rem;
@@ -66,7 +67,7 @@ export const StyledButton = styled(IconButton)`
   }
 `;
 
-const floatUp = keyframes`
+export const floatUp = keyframes`
   from {
     opacity: 0;
     transform: translateY(30%)
@@ -81,4 +82,36 @@ const floatUp = keyframes`
 
 export const floatUpAnimation = css`
   animation: ${floatUp} 700ms ease-in;
+`;
+
+export const modalStyles = css`
+  position: absolute;
+  z-index: 3;
+  margin: auto;
+  top: 8rem;
+  left: 25%;
+  width: 50%;
+`;
+
+export const StyledLink = styled(Link)<{ color?: string }>`
+  color: ${({ color }) => color || "var(--primary-bg)}"};
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    width: 0%;
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: var(--transition);
+    background-color: ${({ color }) => color || "var(--primary-bg)}"};
+  }
+
+  &:hover::after {
+    width: 100%;
+    transition: 250ms ease-out;
+  }
 `;
