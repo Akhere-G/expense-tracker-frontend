@@ -37,3 +37,8 @@ export const Options = [
   Category.Clothes,
   Category.Gifts,
 ];
+
+export interface LoginData {
+  email: string;
+  password: string;
+}
