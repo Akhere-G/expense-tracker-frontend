@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { Header, Footer } from "./components";
 
 import { HomePage, LoginPage, RegisterPage, NotFoundPage } from "./pages";
@@ -18,6 +18,7 @@ const App = () => {
     <>
       <Header isOnLoginPage={isOnLoginPage} />
       <Switch>
+        <Redirect exact from="/" to="/login" /> 
         <Route exact path="/transactions" component={HomePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/register" component={RegisterPage} />
