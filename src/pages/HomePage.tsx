@@ -3,8 +3,6 @@ import React from "react";
 import {
   TransactionForm,
   Balance,
-  Footer,
-  Header,
   Transactions,
   Modal,
   Graph,
@@ -19,7 +17,6 @@ import {
 const Home = () => {
   return (
     <>
-      <Header />
       <Main paddingRight>
         <LeftSection>
           <Balance />
@@ -33,7 +30,6 @@ const Home = () => {
         </RightSection>
         <Modal />
       </Main>
-      <Footer />
     </>
   );
 };
