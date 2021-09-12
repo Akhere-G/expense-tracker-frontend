@@ -24,7 +24,7 @@ const TransactionFormConnected: FC<{
   transactionToUpdate?: Transaction;
   closeModal?: () => void;
 }> = ({ transactionToUpdate, closeModal }) => {
-  const [formData, setTransaction] = useState<Transaction>(
+  const [formData, setFormData] = useState<Transaction>(
     transactionToUpdate || initialTransaction
   );
   const [errorMessages, setErrorMessages] = useState<ErrorMessages>({});
@@ -104,7 +104,7 @@ const TransactionFormConnected: FC<{
   }, [formData.date, isValidDate]);
 
   const updateFormData = (currentState: Partial<Transaction>) => {
-    setTransaction((prev) => ({ ...prev, ...currentState }));
+    setFormData((prev) => ({ ...prev, ...currentState }));
   };
 
   const addTransaction = (formData: Transaction) =>

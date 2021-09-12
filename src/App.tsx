@@ -18,7 +18,7 @@ const App = () => {
     <>
       <Header isOnLoginPage={isOnLoginPage} />
       <Switch>
-        <Redirect exact from="/" to="/login" /> 
+        <Redirect exact from="/" to="/login" />
         <Route exact path="/transactions" component={HomePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/register" component={RegisterPage} />

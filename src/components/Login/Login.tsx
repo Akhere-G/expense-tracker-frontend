@@ -1,33 +1,62 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Container } from "./Login.styled";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { TextField, Button } from "@material-ui/core";
+import { FormGroup } from "../../utils/global";
+import { useHistory } from "react-router-dom";
+
+interface FormData {}
+
+const initialFormData = { email: "", password: "" };
 
 const Login = () => {
-  const [show, setShow] = useState(false);
+  const [formData, setFormData] = useState(initialFormData);
 
-  const linkRef = useRef<HTMLAnchorElement>(null);
+  const history = useHistory();
+  const updateFormData = (currentState: Partial<FormData>) => {
+    setFormData((prev) => ({ ...prev, ...currentState }));
+  };
 
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    setShow(true);
-
-    return () => setShow(false);
-  }, [pathname]);
+  const onSubmit = () => {
+    history.push("/transactions");
+  };
 
   return (
-    <Container show={show}>
-      <h2>Log In now</h2>
-      <button
-        onClick={() => {
-          setShow(false);
-          setTimeout(() => linkRef.current?.click(), 10);
-        }}
-      >
-        Link
-      </button>
-      <Link ref={linkRef} to="/transactions" style={{ display: "none" }} />
+    <Container>
+      <h2>Log In</h2>
+
+      <form onSubmit={onSubmit}>
+        <FormGroup>
+          <TextField
+            fullWidth
+            label="Email"
+            value={formData.email}
+            onChange={(
+              e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+            ) => updateFormData({ email: e.target.value })}
+          />
+        </FormGroup>
+        <FormGroup>
+          <TextField
+            fullWidth
+            label="Password"
+            value={formData.password}
+            type="password"
+            onChange={(
+              e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+            ) => updateFormData({ password: e.target.value })}
+          />
+        </FormGroup>
+        <Button
+          fullWidth
+          color="primary"
+          variant="contained"
+          type="submit"
+          style={{ marginTop: "1rem" }}
+        >
+          Log in
+        </Button>
+      </form>
     </Container>
   );
 };

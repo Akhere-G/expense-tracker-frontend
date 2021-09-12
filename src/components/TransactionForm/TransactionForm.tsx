@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { Form, FormGroup } from "./TransactionForm.styled";
+import { Form } from "./TransactionForm.styled";
+import { FormGroup } from "../../utils/global";
 import { TextField, Button } from "@material-ui/core";
 import { Options, Transaction } from "../../utils/types";
 

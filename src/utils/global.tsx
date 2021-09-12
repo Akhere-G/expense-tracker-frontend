@@ -115,3 +115,8 @@ export const StyledLink = styled(Link)<{ color?: string }>`
     transition: 250ms ease-out;
   }
 `;
+
+export const FormGroup = styled.div`
+  padding-bottom: 0.5rem;
+  width: 100%;
+`;

@@ -15,8 +15,3 @@ export const Form = styled.form<{ isUpdateForm?: boolean }>`
     margin: 0.25rem 0rem 0rem !important;
   }
 `;
-
-export const FormGroup = styled.div`
-  padding-bottom: 0.5rem;
-  width: 100%;
-`;

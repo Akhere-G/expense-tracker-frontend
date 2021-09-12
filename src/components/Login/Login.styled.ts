@@ -3,7 +3,7 @@ import { modalStyles, paperStyles, floatUp } from "../../utils/global";
 
 export const Header = styled.div``;
 
-export const Container = styled.div<{ show: boolean }>`
+export const Container = styled.div`
   ${modalStyles}
   ${paperStyles}
   animation: ${floatUp} 400ms ease-in 600ms;
