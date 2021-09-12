@@ -6,3 +6,4 @@ export { default as Transactions } from "./Transactions/TransactionsConnected";
 export { default as Modal } from "./Modal/ModalConnected";
 export { default as DeleteModal } from "./DeleteModal/DeleteModal";
 export { default as Graph } from "./Graph/GraphConnected";
+export { default as NotFound } from "./NotFound/NotFound";

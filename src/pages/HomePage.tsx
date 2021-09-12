@@ -20,7 +20,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <Main>
+      <Main paddingRight>
         <LeftSection>
           <Balance />
           <TransactionForm />

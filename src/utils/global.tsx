@@ -1,9 +1,15 @@
 import styled, { css, keyframes } from "styled-components";
 import { IconButton } from "@material-ui/core";
 
-export const Main = styled.main`
+export const paper = css`
+  background: white;
+  box-shadow: var(--box-shadow);
+  padding: 1rem;
+`;
+
+export const Main = styled.main<{ paddingRight?: boolean }>`
   margin: 0 auto;
-  padding-right: 1rem;
+  padding-right: ${({ paddingRight }) => (paddingRight ? "1rem" : " 0")};
   padding-bottom: 1rem;
 
   max-width: var(--max-width);
