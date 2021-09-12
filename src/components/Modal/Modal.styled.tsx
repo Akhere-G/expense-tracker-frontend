@@ -10,7 +10,7 @@ export const Background = styled.div<{ isVisible: boolean }>`
   display: ${({ isVisible }) => (isVisible ? "flex" : "none")};
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 2;
 `;
 
 export const ModalContainer = styled.div`
