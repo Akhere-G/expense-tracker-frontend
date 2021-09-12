@@ -38,6 +38,13 @@ export const Options = [
   Category.Gifts,
 ];
 
+export type User = {
+  firstName: string | null;
+  lastName: string | null;
+  email: string | null;
+  profilePicSrc: string | null;
+};
+
 export interface LoginData {
   email: string;
   password: string;
