@@ -7,4 +7,4 @@ export { default as Modal } from "./Modal/ModalConnected";
 export { default as DeleteModal } from "./DeleteModal/DeleteModal";
 export { default as Graph } from "./Graph/GraphConnected";
 export { default as NotFound } from "./NotFound/NotFound";
-export { default as Login } from "./Login/Login";
+export { default as Login } from "./Login/LoginConnected";

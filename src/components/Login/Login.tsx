@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Container } from "./Login.styled";
-import { Link } from "react-router-dom";
 import { TextField, Button } from "@material-ui/core";
-import { FormGroup } from "../../utils/global";
+import { FormGroup, ButtonGroup } from "../../utils/global";
 import { useHistory } from "react-router-dom";
+import { GoogleLogin } from "react-google-login";
 
 interface FormData {}
 
+export interface Props {
+  googleLoginProps: {
+    onSuccess: (res: any) => void;
+    onFailure: (res: any) => void;
+    clientId: string;
+    googleIcon: any;
+  };
+}
+
 const initialFormData = { email: "", password: "" };
 
-const Login = () => {
+const Login: FC<Props> = ({ googleLoginProps }) => {
   const [formData, setFormData] = useState(initialFormData);
 
   const history = useHistory();
@@ -20,6 +29,8 @@ const Login = () => {
   const onSubmit = () => {
     history.push("/transactions");
   };
+
+  const { onSuccess, onFailure, clientId } = googleLoginProps;
 
   return (
     <Container>
@@ -47,15 +58,16 @@ const Login = () => {
             ) => updateFormData({ password: e.target.value })}
           />
         </FormGroup>
-        <Button
-          fullWidth
-          color="primary"
-          variant="contained"
-          type="submit"
-          style={{ marginTop: "1rem" }}
-        >
-          Log in
-        </Button>
+        <ButtonGroup>
+          <Button color="primary" variant="contained" type="submit">
+            Log in
+          </Button>
+          <GoogleLogin
+            clientId={clientId}
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+          />
+        </ButtonGroup>
       </form>
     </Container>
   );

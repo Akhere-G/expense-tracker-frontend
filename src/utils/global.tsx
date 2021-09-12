@@ -120,3 +120,19 @@ export const FormGroup = styled.div`
   padding-bottom: 0.5rem;
   width: 100%;
 `;
+
+export const ButtonGroup = styled.div`
+  padding-bottom: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+
+  & > * {
+  }
+
+  & > :first-child {
+    margin-right: 1rem;
+    flex: 1;
+  }
+`;
