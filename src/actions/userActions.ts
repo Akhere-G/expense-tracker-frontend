@@ -1,5 +1,5 @@
 import { User, LoginData } from "../utils/types";
-import { RootState, RootAction, Dispatch } from "../reducers/rootReducer";
+import { RootAction, Dispatch } from "../reducers/rootReducer";
 import * as api from "../utils/api";
 
 export const LOGIN_SUCCESS = "user/LOGIN_SUCCESS";

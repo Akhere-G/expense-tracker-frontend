@@ -7,15 +7,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../actions/userActions";
 import { RootState } from "../../reducers/rootReducer";
 
-import { LoginData } from "../../utils/types";
+import { LoginData, User } from "../../utils/types";
 
 const LoginConnected = () => {
   const dispatch = useDispatch();
   const { message } = useSelector((state: RootState) => state.user);
 
-  const onSuccess = async (res: GoogleLoginResponse) => {
-    const result = res?.profileObj;
-    const token = res?.tokenId;
+  const onSuccess = (res: GoogleLoginResponse) => {
+    const result = res.profileObj;
+    const token = res.tokenId;
+
+    const user: User = {
+      email: result.email,
+      firstName: result.givenName,
+      lastName: result.familyName,
+      profilePicSrc: result.imageUrl,
+    };
+
+    dispatch(actionCreators.loginSuccess(user, token));
 
     console.log(`success`, result, token);
   };
