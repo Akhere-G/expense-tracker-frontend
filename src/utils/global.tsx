@@ -92,10 +92,9 @@ export const modalStyles = css`
   left: 25%;
   width: 50%;
 
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 600px) {
     left: 10%;
     width: 80%;
-  
   }
 `;
 
@@ -133,8 +132,7 @@ export const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
-  
-  
+
   & > * {
     max-width: 300px;
   }
@@ -142,7 +140,6 @@ export const ButtonGroup = styled.div`
   & > :first-child {
     margin-right: 1rem;
     flex: 1;
-
   }
 `;
 

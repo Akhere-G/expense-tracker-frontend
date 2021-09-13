@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { floatUp } from "../../utils/global";
+import { Avatar as MAvatar } from "@material-ui/core";
 
 interface Props {
   isOnLoginPage: boolean;
@@ -8,18 +9,20 @@ export const Wrapper = styled.header<Props>`
   background-color: var(--primary-bg);
   color: white;
   position: relative;
-  height: ${({ isOnLoginPage }) => (isOnLoginPage ? "100vh" : "7vh")};
+  height: ${({ isOnLoginPage }) => (isOnLoginPage ? "100vh" : "100%")};
   min-height: ${({ isOnLoginPage }) => (isOnLoginPage ? "500px" : "3rem")};
   width: 100%;
   z-index: 2;
   transition: all 500ms ease-in;
+  box-shadow: 0px 1px 2px #0008;
 `;
 
 export const Container = styled.div<Props>`
   padding: 0.5rem 1rem;
-  align-items: center;
-  box-shadow: 0px 1px 2px #0008;
   height: 100%;
+  display: flex;
+  align-items: ${({ isOnLoginPage }) =>
+    isOnLoginPage ? "baseline" : "center"};
 
   transition: all 500ms ease-in;
 `;
@@ -48,16 +51,31 @@ const bounce = keyframes`
 `;
 
 export const RightSection = styled.div<Props>`
+  opacity: ${({ isOnLoginPage }) => (isOnLoginPage ? "0" : "1")};
+  width: ${({ isOnLoginPage }) => (isOnLoginPage ? "0%" : "min-content")};
+  transition: all 500ms ease-in;
+`;
+
+export const LeftSection = styled.div<Props>`
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: ${({ isOnLoginPage }) => (isOnLoginPage ? "3rem" : "0rem")};
   margin-left: auto;
   margin-right: auto;
+  padding-right: 0.3rem;
 
   transition: all 500ms ease-in;
   animation: ${floatUp} 300ms ease-in 300ms;
   animation-fill-mode: backwards;
+`;
+
+export const Avatar = styled(MAvatar)`
+  width: 27px;
+  height: 27px;
+  background-color: #adadad !important;
+  color: #fff !important;
+
 `;
 
 export const Logo = styled.span`

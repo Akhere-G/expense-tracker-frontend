@@ -36,7 +36,6 @@ export const actionCreators = {
       const response = await api.login(formData);
       const { user, token } = response.data as LoginResponse;
 
-      console.log("in actions", user);
       dispatch(actionCreators.loginSuccess(user, token));
     } catch (err: any) {
       const message = err?.response?.data?.message || "Could not login.";
