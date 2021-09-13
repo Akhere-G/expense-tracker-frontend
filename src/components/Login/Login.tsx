@@ -1,11 +1,9 @@
 import React, { FC, useState } from "react";
 import { Container } from "./Login.styled";
 import { TextField, Button } from "@material-ui/core";
-import { FormGroup, ButtonGroup } from "../../utils/global";
-import { useHistory } from "react-router-dom";
+import { FormGroup, ButtonGroup, ErrorBanner } from "../../utils/global";
+import { LoginData } from "../../utils/types";
 import { GoogleLogin } from "react-google-login";
-
-interface FormData {}
 
 export interface Props {
   googleLoginProps: {
@@ -14,28 +12,32 @@ export interface Props {
     clientId: string;
     googleIcon: any;
   };
+  login: (loginData: LoginData) => void;
+  errorMessage: string | null;
 }
 
-const initialFormData = { email: "", password: "" };
+const initialFormData: LoginData = { email: "", password: "" };
 
-const Login: FC<Props> = ({ googleLoginProps }) => {
-  const [formData, setFormData] = useState(initialFormData);
+const Login: FC<Props> = ({ googleLoginProps, login, errorMessage }) => {
+  const [formData, setFormData] = useState<LoginData>(initialFormData);
 
-  const history = useHistory();
-  const updateFormData = (currentState: Partial<FormData>) => {
+  const updateFormData = (currentState: Partial<LoginData>) => {
     setFormData((prev) => ({ ...prev, ...currentState }));
-  };
-
-  const onSubmit = () => {
-    history.push("/transactions");
   };
 
   const { onSuccess, onFailure, clientId } = googleLoginProps;
 
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    login(formData);
+  };
+
   return (
     <Container>
       <h2>Log In</h2>
-
+      <ErrorBanner errorMessage={!!errorMessage} key={errorMessage}>
+        {errorMessage || ""}
+      </ErrorBanner>
       <form onSubmit={onSubmit}>
         <FormGroup>
           <TextField

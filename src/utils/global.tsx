@@ -136,3 +136,12 @@ export const ButtonGroup = styled.div`
     flex: 1;
   }
 `;
+
+export const ErrorBanner = styled.p<{ errorMessage: boolean }>`
+  text-align: center;
+  font-size: 0.85rem;
+  color: #f44;
+  height: 0;
+  transition: var(--transition);
+  ${floatUpAnimation}
+`;

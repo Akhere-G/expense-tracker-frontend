@@ -16,21 +16,19 @@ import {
 
 const Home = () => {
   return (
-    <>
-      <Main paddingRight>
-        <LeftSection>
-          <Balance />
-          <TransactionForm />
-        </LeftSection>
-        <CenterSection>
-          <Transactions />
-        </CenterSection>
-        <RightSection>
-          <Graph />
-        </RightSection>
-        <Modal />
-      </Main>
-    </>
+    <Main paddingRight>
+      <LeftSection>
+        <Balance />
+        <TransactionForm />
+      </LeftSection>
+      <CenterSection>
+        <Transactions />
+      </CenterSection>
+      <RightSection>
+        <Graph />
+      </RightSection>
+      <Modal />
+    </Main>
   );
 };
 
