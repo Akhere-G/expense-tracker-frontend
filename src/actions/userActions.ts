@@ -27,18 +27,16 @@ export const actionCreators = {
     type: LOGIN_FAILURE,
     payload: { message },
   }),
-  login:
-    (formData: LoginData) =>
-    async (dispatch: Dispatch<RootAction>, getState: () => RootState) => {
-      try {
-        const response = await api.login(formData);
-        const user = response.data as User;
-        const token = response.data as string;
+  login: (formData: LoginData) => async (dispatch: Dispatch<RootAction>) => {
+    try {
+      const response = await api.login(formData);
+      const user = response.data as User;
+      const token = response.data as string;
 
-        dispatch(actionCreators.loginSuccess(user, token));
-      } catch (err: any) {
-        const message = err?.response?.data?.message || "Could not login.";
-        dispatch(actionCreators.loginFailure(message));
-      }
-    },
+      dispatch(actionCreators.loginSuccess(user, token));
+    } catch (err: any) {
+      const message = err?.response?.data?.message || "Could not login.";
+      dispatch(actionCreators.loginFailure(message));
+    }
+  },
 };
