@@ -18,6 +18,10 @@ type Actions = {
 
 export type UserActions = Actions[keyof Actions] | { type: "@@INIT" };
 
+interface LoginResponse {
+  user: User;
+  token: string;
+}
 export const actionCreators = {
   loginSuccess: (user: User, token: string): Actions[typeof LOGIN_SUCCESS] => ({
     type: LOGIN_SUCCESS,
@@ -30,9 +34,9 @@ export const actionCreators = {
   login: (formData: LoginData) => async (dispatch: Dispatch<RootAction>) => {
     try {
       const response = await api.login(formData);
-      const user = response.data as User;
-      const token = response.data as string;
+      const { user, token } = response.data as LoginResponse;
 
+      console.log("in actions", user);
       dispatch(actionCreators.loginSuccess(user, token));
     } catch (err: any) {
       const message = err?.response?.data?.message || "Could not login.";
