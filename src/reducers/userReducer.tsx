@@ -2,6 +2,7 @@ import {
   UserActions,
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
+  LOGOUT,
 } from "../actions/userActions";
 import { User } from "../utils/types";
 
@@ -24,6 +25,8 @@ export const userReducer = (
       return { user: action.payload.user, message: null };
     case LOGIN_FAILURE:
       return { ...state, message: action.payload.message };
+    case LOGOUT:
+      return { ...state, user: null };
     default:
       return state;
   }

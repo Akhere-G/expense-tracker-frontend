@@ -4,6 +4,7 @@ import * as api from "../utils/api";
 
 export const LOGIN_SUCCESS = "user/LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "user/LOGIN_FAILURE";
+export const LOGOUT = "user/LOGOUT";
 
 type Actions = {
   [LOGIN_SUCCESS]: {
@@ -13,6 +14,9 @@ type Actions = {
   [LOGIN_FAILURE]: {
     type: typeof LOGIN_FAILURE;
     payload: { message: string };
+  };
+  [LOGOUT]: {
+    type: typeof LOGOUT;
   };
 };
 
@@ -31,6 +35,7 @@ export const actionCreators = {
     type: LOGIN_FAILURE,
     payload: { message },
   }),
+  logout: (): Actions[typeof LOGOUT] => ({ type: LOGOUT }),
   login: (formData: LoginData) => async (dispatch: Dispatch<RootAction>) => {
     try {
       const response = await api.login(formData);
