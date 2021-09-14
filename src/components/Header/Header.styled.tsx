@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { floatUp } from "../../utils/global";
+import { floatUp, paperStyles } from "../../utils/global";
 import { Avatar as MAvatar } from "@material-ui/core";
 
 interface Props {
@@ -50,10 +50,25 @@ const bounce = keyframes`
 
 `;
 
-export const RightSection = styled.div<Props>`
-  opacity: ${({ isOnLoginPage }) => (isOnLoginPage ? "0" : "1")};
-  width: ${({ isOnLoginPage }) => (isOnLoginPage ? "0%" : "min-content")};
-  transition: all 500ms ease-in;
+export const MenuContainer = styled.div`
+  position: absolute;
+  width: max-content;
+  right: 0.1rem;
+  top: 0.8rem;
+  padding-top: 1.5rem;
+`;
+
+export const Menu = styled.div`
+  ${paperStyles};
+  &:after {
+    content: "";
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    background-color: white;
+    position: absolute;
+    top: 1rem;
+    height: 0.5rem;
+    width: 0.5rem;
+  }
 `;
 
 export const LeftSection = styled.div<Props>`
@@ -70,12 +85,31 @@ export const LeftSection = styled.div<Props>`
   animation-fill-mode: backwards;
 `;
 
+export const RightSection = styled.div<Props>`
+  opacity: ${({ isOnLoginPage }) => (isOnLoginPage ? "0" : "1")};
+  width: ${({ isOnLoginPage }) => (isOnLoginPage ? "0%" : "min-content")};
+  transition: all 500ms ease-in;
+  position: relative;
+  cursor: pointer;
+
+  & > ${MenuContainer} {
+    opacity: 0;
+    transition: opacity 200ms ease-in;
+    pointer-events: none;
+  }
+
+  &:hover > ${MenuContainer} {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+    pointer-events: all;
+  }
+`;
+
 export const Avatar = styled(MAvatar)`
   width: 27px;
   height: 27px;
   background-color: #adadad !important;
   color: #fff !important;
-
 `;
 
 export const Logo = styled.span`
