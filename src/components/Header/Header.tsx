@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState, useRef, useEffect } from "react";
 import { MonetizationOn } from "@material-ui/icons";
 import { Button } from "@material-ui/core";
 
@@ -22,6 +22,23 @@ interface Props {
 }
 
 const Header: FC<Props> = ({ isOnLoginPage, user, logout }) => {
+  const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  const checkClickAway: EventListener = (e: Event) => {
+    const target = e.target as HTMLElement;
+
+    const didClickInMenu = menuRef?.current?.contains(target);
+    if (!didClickInMenu) {
+      setShowMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", checkClickAway);
+
+    return () => window.removeEventListener("click", checkClickAway);
+  }, []);
   return (
     <Wrapper isOnLoginPage={isOnLoginPage}>
       <Container isOnLoginPage={isOnLoginPage}>
@@ -31,7 +48,14 @@ const Header: FC<Props> = ({ isOnLoginPage, user, logout }) => {
             <MonetizationOn />
           </Logo>
         </LeftSection>
-        <RightSection isOnLoginPage={isOnLoginPage}>
+        <RightSection
+          isOnLoginPage={isOnLoginPage}
+          showMenu={showMenu}
+          onClick={() => setShowMenu((prev) => !prev)}
+          ref={menuRef}
+          onMouseEnter={() => setShowMenu((prev) => true)}
+          onMouseLeave={() => setShowMenu((prev) => false)}
+        >
           <Avatar
             src={user?.profilePicSrc || undefined}
             alt="avatar"

@@ -1,17 +1,21 @@
-import React from "react";
+import React, { FC, useState } from "react";
 import Login, { Props } from "./Login";
 import { Lock } from "@material-ui/icons";
 import { GoogleLoginResponse } from "react-google-login";
 
+import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../actions/userActions";
 import { RootState } from "../../reducers/rootReducer";
 
 import { LoginData, User } from "../../utils/types";
 
-const LoginConnected = () => {
+const LoginConnected: FC<{ isRegister?: boolean }> = ({ isRegister }) => {
+  const [show, setShow] = useState(true);
   const dispatch = useDispatch();
   const { message } = useSelector((state: RootState) => state.user);
+
+  const history = useHistory();
 
   const onSuccess = (res: GoogleLoginResponse) => {
     const result = res.profileObj;
@@ -31,7 +35,17 @@ const LoginConnected = () => {
   const onFailure = async (res: any) => console.log(`success`, res);
 
   const login = async (formData: LoginData) =>
-    dispatch(actionCreators.login(formData));
+    
+    console.log("hello", dispatch(actionCreators.login(formData)));
+
+  const register = async (formData: LoginData) => console.log(formData);
+
+  const switchForm = () => {
+    setShow(false);
+    setTimeout(() => {
+      history.push(isRegister ? "/login" : "/register");
+    }, 300);
+  };
 
   const props: Props = {
     googleLoginProps: {
@@ -41,8 +55,12 @@ const LoginConnected = () => {
       onFailure,
     },
     errorMessage: message,
+    register: isRegister ? register : null,
     login,
+    show,
+    switchForm,
   };
+
   return <Login {...props} />;
 };
 

@@ -48,4 +48,7 @@ export type User = {
 export interface LoginData {
   email: string;
   password: string;
+  confirmPassword?: string;
+  firstName?: string;
+  lastName?: string;
 }

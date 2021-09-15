@@ -121,13 +121,19 @@ export const StyledLink = styled(Link)<{ color?: string }>`
   }
 `;
 
-export const FormGroup = styled.div`
-  padding-bottom: 0.5rem;
+export const FormGroup = styled.div<{
+  alignRight?: boolean;
+  paddingAmount?: string;
+}>`
+  display: flex;
+  padding-bottom: ${({ paddingAmount }) => paddingAmount || "0.5rem"};
   width: 100%;
+
+  justify-content: ${({ alignRight }) => (alignRight ? "end" : "start")};
 `;
 
 export const ButtonGroup = styled.div`
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.8rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -143,7 +149,7 @@ export const ButtonGroup = styled.div`
   }
 `;
 
-export const ErrorBanner = styled.p<{ errorMessage: boolean }>`
+export const ErrorBanner = styled.p`
   text-align: center;
   font-size: 0.85rem;
   color: #f44;

@@ -1,7 +1,12 @@
 import React, { FC, useState } from "react";
 import { Container } from "./Login.styled";
 import { TextField, Button } from "@material-ui/core";
-import { FormGroup, ButtonGroup, ErrorBanner } from "../../utils/global";
+import {
+  FormGroup,
+  ButtonGroup,
+  ErrorBanner,
+  StyledLink,
+} from "../../utils/global";
 import { LoginData } from "../../utils/types";
 import { GoogleLogin } from "react-google-login";
 
@@ -14,11 +19,21 @@ export interface Props {
   };
   login: (loginData: LoginData) => void;
   errorMessage: string | null;
+  register?: null | ((register: LoginData) => void);
+  show: boolean;
+  switchForm: () => void;
 }
 
 const initialFormData: LoginData = { email: "", password: "" };
 
-const Login: FC<Props> = ({ googleLoginProps, login, errorMessage }) => {
+const Login: FC<Props> = ({
+  googleLoginProps,
+  login,
+  errorMessage,
+  register,
+  show,
+  switchForm,
+}) => {
   const [formData, setFormData] = useState<LoginData>(initialFormData);
 
   const updateFormData = (currentState: Partial<LoginData>) => {
@@ -29,16 +44,38 @@ const Login: FC<Props> = ({ googleLoginProps, login, errorMessage }) => {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    login(formData);
+    register ? register(formData) : login(formData);
   };
 
   return (
-    <Container>
-      <h2>Log In</h2>
-      <ErrorBanner errorMessage={!!errorMessage} key={errorMessage}>
-        {errorMessage || ""}
-      </ErrorBanner>
+    <Container show={show}>
+      <h2> {register ? "Register" : "Log In"}</h2>
+      <ErrorBanner key={errorMessage}>{errorMessage || ""}</ErrorBanner>
       <form onSubmit={onSubmit}>
+        {register && (
+          <>
+            <FormGroup>
+              <TextField
+                fullWidth
+                label="First Name"
+                value={formData.firstName || ""}
+                onChange={(
+                  e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+                ) => updateFormData({ firstName: e.target.value })}
+              />
+            </FormGroup>
+            <FormGroup>
+              <TextField
+                fullWidth
+                label="Last Name"
+                value={formData.lastName || ""}
+                onChange={(
+                  e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+                ) => updateFormData({ lastName: e.target.value })}
+              />
+            </FormGroup>
+          </>
+        )}
         <FormGroup>
           <TextField
             fullWidth
@@ -60,9 +97,21 @@ const Login: FC<Props> = ({ googleLoginProps, login, errorMessage }) => {
             ) => updateFormData({ password: e.target.value })}
           />
         </FormGroup>
+        {register && (
+          <FormGroup>
+            <TextField
+              fullWidth
+              label="Confirm Password"
+              value={formData.confirmPassword || ""}
+              onChange={(
+                e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+              ) => updateFormData({ confirmPassword: e.target.value })}
+            />
+          </FormGroup>
+        )}
         <ButtonGroup>
           <Button color="primary" variant="contained" type="submit">
-            Log in
+            {register ? "Register" : "Log In"}
           </Button>
           <GoogleLogin
             clientId={clientId}
@@ -70,6 +119,17 @@ const Login: FC<Props> = ({ googleLoginProps, login, errorMessage }) => {
             onFailure={onFailure}
           />
         </ButtonGroup>
+        <FormGroup alignRight paddingAmount="0rem">
+          <StyledLink
+            to={register ? "/login" : "/register"}
+            onClick={(e: React.MouseEvent) => {
+              e.preventDefault();
+              switchForm();
+            }}
+          >
+            {register ? "Login?" : "Register?"}
+          </StyledLink>
+        </FormGroup>
       </form>
     </Container>
   );

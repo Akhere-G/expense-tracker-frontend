@@ -4,6 +4,7 @@ import { Avatar as MAvatar } from "@material-ui/core";
 
 interface Props {
   isOnLoginPage: boolean;
+  showMenu?: boolean;
 }
 export const Wrapper = styled.header<Props>`
   background-color: var(--primary-bg);
@@ -81,7 +82,7 @@ export const LeftSection = styled.div<Props>`
   padding-right: 0.3rem;
 
   transition: all 500ms ease-in;
-  animation: ${floatUp} 300ms ease-in 300ms;
+  animation: ${floatUp} 200ms ease-in 200ms;
   animation-fill-mode: backwards;
 `;
 
@@ -96,12 +97,14 @@ export const RightSection = styled.div<Props>`
     opacity: 0;
     transition: opacity 200ms ease-in;
     pointer-events: none;
-  }
 
-  &:hover > ${MenuContainer} {
-    opacity: 1;
-    transition: opacity 500ms ease-in;
-    pointer-events: all;
+    ${({ showMenu }) =>
+      !showMenu
+        ? ""
+        : `opacity: 1;
+        transition: opacity 500ms ease-in;
+        pointer-events: all;
+        `}
   }
 `;
 
