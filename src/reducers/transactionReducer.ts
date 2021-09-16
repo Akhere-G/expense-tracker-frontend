@@ -6,6 +6,7 @@ import {
   SET_TRANSACTIONS,
   UPDATE_TRANSACTION,
   SET_BALANCE,
+  SET_MESSAGE,
 } from "../actions/transactionActions";
 import { Balance, Transaction } from "../utils/types";
 import { v4 as uuidv4 } from "uuid";
@@ -14,12 +15,14 @@ export interface TransactionState {
   isLoading: boolean;
   transactions: Transaction[];
   balance: Balance;
+  message: string;
 }
 
 const initialState: TransactionState = {
   isLoading: true,
   transactions: [],
   balance: { income: 0, expenses: 0 },
+  message: "",
 };
 
 const updateTransaction =
@@ -102,6 +105,8 @@ export const transactionReducer = (
         ),
         balance: removeFromBalance(state.balance, action.payload.transaction),
       };
+    case SET_MESSAGE:
+      return { ...state, message: action.payload.message };
     default:
       return state;
   }
