@@ -2,10 +2,10 @@ import { Transaction, Balance } from "../utils/types";
 
 export const SET_IS_LOADING = "transaction/SET_IS_LOADING";
 export const SET_TRANSACTIONS = "transaction/SET_TRANSACTIONS";
+export const SET_MESSAGE = "transactions/SET_MESSAGE";
 export const ADD_TRANSACTION = "transaction/ADD_TRANSACTION";
 export const UPDATE_TRANSACTION = "transaction/UPDATE_TRANSACTION";
 export const DELETE_TRANSACTION = "transaction/DELETE_TRANSACTION";
-export const FETCH_TRANSACTIONS = "transaction/FETCH_TRANSACTIONS";
 export const SET_BALANCE = "transaction/SET_BALANCE";
 
 type Actions = {
@@ -20,6 +20,10 @@ type Actions = {
   [SET_TRANSACTIONS]: {
     type: typeof SET_TRANSACTIONS;
     payload: { transactions: Transaction[] };
+  };
+  [SET_MESSAGE]: {
+    type: typeof SET_MESSAGE;
+    payload: { message: string };
   };
   [ADD_TRANSACTION]: {
     type: typeof ADD_TRANSACTION;
@@ -51,6 +55,10 @@ export const actionCreators = {
   ): Actions[typeof SET_TRANSACTIONS] => ({
     type: SET_TRANSACTIONS,
     payload: { transactions },
+  }),
+  setMessage: (message: string): Actions[typeof SET_MESSAGE] => ({
+    type: SET_MESSAGE,
+    payload: { message },
   }),
   addTransaction: (
     transaction: Transaction

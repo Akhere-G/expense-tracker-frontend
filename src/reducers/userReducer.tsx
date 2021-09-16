@@ -27,7 +27,11 @@ export const userReducer = (
   switch (action.type) {
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
-      return { user: action.payload.user, token: action.payload.token, message: null };
+      return {
+        user: action.payload.user,
+        token: action.payload.token,
+        message: null,
+      };
     case LOGIN_FAILURE:
     case REGISTER_FAILURE:
       return { ...state, message: action.payload.message };
