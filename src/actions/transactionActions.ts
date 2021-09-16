@@ -1,4 +1,8 @@
 import { Transaction, Balance } from "../utils/types";
+import { RootAction, Dispatch, RootState } from "../reducers/rootReducer";
+import * as api from "../utils/api";
+
+type GetState = () => RootState;
 
 export const SET_IS_LOADING = "transaction/SET_IS_LOADING";
 export const SET_TRANSACTIONS = "transaction/SET_TRANSACTIONS";
@@ -78,4 +82,26 @@ export const actionCreators = {
     type: DELETE_TRANSACTION,
     payload: { transaction },
   }),
+  fetchTransactions:
+    () => async (dispatch: Dispatch<RootAction>, getState: GetState) => {
+      try {
+        const { user } = getState();
+        const { token } = user;
+
+        if (!token) {
+          return dispatch(
+            actionCreators.setMessage("You need to log in or register.")
+          );
+        }
+
+        const response = await api.fetchTransactions(token);
+        const { transactions } = response.data;
+
+        return dispatch(actionCreators.setTransactions(transactions));
+      } catch (err: any) {
+        const message = err?.message || "Could not get transactions.";
+
+        dispatch(actionCreators.setMessage(message));
+      }
+    },
 };

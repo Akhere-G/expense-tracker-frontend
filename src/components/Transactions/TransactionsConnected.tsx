@@ -100,8 +100,9 @@ const TransactionsConnected = () => {
   );
 
   useEffect(() => {
-    dispatch(actionCreators.setTransactions(initialTransactions));
+    dispatch(actionCreators.fetchTransactions());
   }, [dispatch]);
+
   return <Transactions transactions={transactions} />;
 };
 
