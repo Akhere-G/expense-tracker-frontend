@@ -7,3 +7,6 @@ export const getDomain = () =>
 
 export const login = async (loginData: LoginData) =>
   await axios.post(`${getDomain()}/api/auth/login`, loginData);
+
+export const register = async (loginData: LoginData) =>
+  await axios.post(`${getDomain()}/api/auth/register`, loginData);
