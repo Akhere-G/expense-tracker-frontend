@@ -110,6 +110,7 @@ const Login: FC<Props> = ({
               fullWidth
               label="Confirm Password"
               value={formData.confirmPassword || ""}
+              type="password"
               onChange={(
                 e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
               ) => updateFormData({ confirmPassword: e.target.value })}
@@ -131,7 +132,6 @@ const Login: FC<Props> = ({
                 color="primary"
                 {...props}
               >
-                {console.log("p", props)}
                 Sign in with Google
               </Button>
             )}

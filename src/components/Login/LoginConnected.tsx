@@ -29,15 +29,12 @@ const LoginConnected: FC<{ isRegister?: boolean }> = ({ isRegister }) => {
     };
 
     dispatch(actionCreators.loginSuccess(user, token));
-
-    console.log(`success`, result, token);
   };
   const onFailure = async (res: any) => console.log(`success`, res);
 
-  const login = async (formData: LoginData) =>
-    console.log("hello", dispatch(actionCreators.login(formData)));
+  const login = (formData: LoginData) => dispatch(actionCreators.login(formData));
 
-  const register = async (formData: LoginData) => console.log(formData);
+  const register =  (formData: LoginData) => dispatch(actionCreators.register(formData));
 
   const switchForm = () => {
     setShow(false);
