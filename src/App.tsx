@@ -17,10 +17,12 @@ const App = () => {
   const loginPages = ["/login", "/register"];
   const isOnLoginPage = loginPages.includes(pathname.toLowerCase());
   const isLoggedIn = !!user;
+  
+  let loginPageHeight = pathname === "/register" ? "650px" : "300px";
 
   return (
     <>
-      <Header isOnLoginPage={isOnLoginPage} />
+      <Header isOnLoginPage={isOnLoginPage} loginPageHeight={loginPageHeight} />
       <Switch>
         {!isLoggedIn && !isOnLoginPage && (
           <Redirect exact from="*" to="/login" />

@@ -17,11 +17,12 @@ import { User } from "../../utils/types";
 
 interface Props {
   isOnLoginPage: boolean;
+  loginPageHeight: string;
   user: User | null;
   logout: () => void;
 }
 
-const Header: FC<Props> = ({ isOnLoginPage, user, logout }) => {
+const Header: FC<Props> = ({ isOnLoginPage, loginPageHeight, user, logout }) => {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -39,8 +40,9 @@ const Header: FC<Props> = ({ isOnLoginPage, user, logout }) => {
 
     return () => window.removeEventListener("click", checkClickAway);
   }, []);
+
   return (
-    <Wrapper isOnLoginPage={isOnLoginPage}>
+    <Wrapper isOnLoginPage={isOnLoginPage} loginPageHeight={loginPageHeight}>
       <Container isOnLoginPage={isOnLoginPage}>
         <LeftSection isOnLoginPage={isOnLoginPage}>
           <Title>Expense Tracker </Title>
