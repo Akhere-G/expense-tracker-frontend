@@ -10,3 +10,10 @@ export const login = async (loginData: LoginData) =>
 
 export const register = async (loginData: LoginData) =>
   await axios.post(`${getDomain()}/api/auth/register`, loginData);
+
+export const fetchTransactions = async (token: string) =>
+  await axios.get(`${getDomain()}/api/auth/register`, {
+    headers: {
+      Authorization: token,
+    },
+  });
