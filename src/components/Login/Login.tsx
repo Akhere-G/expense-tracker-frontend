@@ -10,6 +10,8 @@ import {
 import { LoginData } from "../../utils/types";
 import { GoogleLogin } from "react-google-login";
 
+import Icon from "./Icon"
+
 export interface Props {
   googleLoginProps: {
     onSuccess: (res: any) => void;
@@ -22,6 +24,11 @@ export interface Props {
   register?: null | ((register: LoginData) => void);
   show: boolean;
   switchForm: () => void;
+}
+
+interface GoogleLoginProps {
+  onClick: () => void;
+  disabled?: boolean | undefined;
 }
 
 const initialFormData: LoginData = { email: "", password: "" };
@@ -117,6 +124,12 @@ const Login: FC<Props> = ({
             clientId={clientId}
             onSuccess={onSuccess}
             onFailure={onFailure}
+            render={(props: GoogleLoginProps) => (
+              <Button startIcon={<Icon />} variant="contained" color="primary" {...props}>
+                { console.log("p",props)}
+                Sign in with Google
+              </Button>
+            )}
           />
         </ButtonGroup>
         <FormGroup alignRight paddingAmount="0rem">

@@ -141,11 +141,25 @@ export const ButtonGroup = styled.div`
 
   & > * {
     max-width: 300px;
+    flex: 1;
+
   }
 
   & > :first-child {
     margin-right: 1rem;
-    flex: 1;
+  }
+
+  @media screen and (max-width: 800px){
+    flex-direction: column;
+    
+    & > * {
+    max-width: 600px;
+    }
+
+    & > :first-child {
+      margin-right: 0rem;
+      margin-bottom: 0.5rem;
+    }
   }
 `;
 

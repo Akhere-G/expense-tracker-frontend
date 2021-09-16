@@ -51,7 +51,7 @@ const Header: FC<Props> = ({ isOnLoginPage, user, logout }) => {
         <RightSection
           isOnLoginPage={isOnLoginPage}
           showMenu={showMenu}
-          onClick={() => setShowMenu((prev) => !prev)}
+          onClick={() => setShowMenu(true)}
           ref={menuRef}
           onMouseEnter={() => setShowMenu((prev) => true)}
           onMouseLeave={() => setShowMenu((prev) => false)}

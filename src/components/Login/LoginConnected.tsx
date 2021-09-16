@@ -35,7 +35,6 @@ const LoginConnected: FC<{ isRegister?: boolean }> = ({ isRegister }) => {
   const onFailure = async (res: any) => console.log(`success`, res);
 
   const login = async (formData: LoginData) =>
-    
     console.log("hello", dispatch(actionCreators.login(formData)));
 
   const register = async (formData: LoginData) => console.log(formData);
