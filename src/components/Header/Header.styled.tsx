@@ -11,7 +11,7 @@ export const Wrapper = styled.header<Props>`
   color: white;
   position: relative;
   height: ${({ isOnLoginPage }) => (isOnLoginPage ? "100vh" : "100%")};
-  min-height: ${({ isOnLoginPage }) => (isOnLoginPage ? "500px" : "3rem")};
+  min-height: ${({ isOnLoginPage }) => (isOnLoginPage ? "650px" : "3rem")};
   width: 100%;
   z-index: 2;
   transition: all 500ms ease-in;
