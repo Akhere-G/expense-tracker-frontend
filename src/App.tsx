@@ -17,7 +17,7 @@ const App = () => {
   const loginPages = ["/login", "/register"];
   const isOnLoginPage = loginPages.includes(pathname.toLowerCase());
   const isLoggedIn = !!user;
-  
+
   let loginPageHeight = pathname === "/register" ? "650px" : "300px";
 
   return (

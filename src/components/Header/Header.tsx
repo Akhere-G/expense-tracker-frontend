@@ -22,7 +22,12 @@ interface Props {
   logout: () => void;
 }
 
-const Header: FC<Props> = ({ isOnLoginPage, loginPageHeight, user, logout }) => {
+const Header: FC<Props> = ({
+  isOnLoginPage,
+  loginPageHeight,
+  user,
+  logout,
+}) => {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
