@@ -91,13 +91,33 @@ export const actionCreators = {
         dispatch(actionCreators.setMessage(message));
       }
     },
+  updateTransaction:
+    (transaction: Transaction) =>
+    async (dispatch: Dispatch<RootAction>, getState: GetState) => {
+      try {
+        const { user } = getState();
+        const { token } = user;
 
-  updateTransaction: (
-    transaction: Transaction
-  ): Actions[typeof UPDATE_TRANSACTION] => ({
-    type: UPDATE_TRANSACTION,
-    payload: { transaction },
-  }),
+        if (!token) {
+          dispatch(
+            actionCreators.setMessage("You need to log in or register.")
+          );
+          return Promise.resolve();
+        }
+
+        const response = await api.updateTransaction(token, transaction);
+        const responseTransaction = response.data.transaction;
+
+        dispatch({
+          type: UPDATE_TRANSACTION,
+          payload: { transaction: responseTransaction },
+        });
+      } catch (err: any) {
+        const message = err?.message || "Could not get transactions.";
+
+        dispatch(actionCreators.setMessage(message));
+      }
+    },
   deleteTransaction: (
     transaction: Transaction
   ): Actions[typeof DELETE_TRANSACTION] => ({
