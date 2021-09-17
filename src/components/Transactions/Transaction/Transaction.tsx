@@ -18,11 +18,11 @@ export interface Props extends ITransaction {
 
 const getDate = (date: string | Date) => {
   try {
-    return new Date(date).toUTCString().substring(0, 16)
+    return new Date(date).toUTCString().substring(0, 16);
   } catch (err) {
-    return ""
+    return "";
   }
-}
+};
 const Transaction: FC<Props> = ({
   _id,
   amount,
@@ -49,14 +49,28 @@ const Transaction: FC<Props> = ({
       <td style={{ textAlign: "right" }}>
         <StyledButton
           onClick={() =>
-            updateTransaction({ _id, amount, category, date, type, description })
+            updateTransaction({
+              _id,
+              amount,
+              category,
+              date,
+              type,
+              description,
+            })
           }
         >
           <Edit fontSize="small" />
         </StyledButton>
         <StyledButton
           onClick={() =>
-            deleteTransaction({ _id, amount, category, date, type, description })
+            deleteTransaction({
+              _id,
+              amount,
+              category,
+              date,
+              type,
+              description,
+            })
           }
         >
           <Close fontSize="small" />

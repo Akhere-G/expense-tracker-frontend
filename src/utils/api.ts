@@ -38,14 +38,16 @@ export const addTransaction = async (token: string, transaction: Transaction) =>
     }
   );
 
-  
-export const updateTransaction = async (token: string, transaction: Transaction) =>
-await axios.patch<TransactionResponse>(
-  `${getDomain()}/api/transactions/${transaction._id}`,
-  transaction,
-  {
-    headers: {
-      Authorization: token,
-    },
-  }
-);
+export const updateTransaction = async (
+  token: string,
+  transaction: Transaction
+) =>
+  await axios.patch<TransactionResponse>(
+    `${getDomain()}/api/transactions/${transaction._id}`,
+    transaction,
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
