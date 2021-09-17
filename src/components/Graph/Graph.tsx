@@ -45,6 +45,10 @@ const Graph: FC<{ categories: Category[]; data: number[] }> = ({
     };
     setChartData(newData);
   }, [categories, data]);
+
+  if (data.length === 0) {
+    return <></>
+  }
   return (
     <Container>
       <h2>Spending per category (£)</h2>

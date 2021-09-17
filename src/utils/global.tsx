@@ -20,6 +20,7 @@ export const Main = styled.main<{ paddingRight?: boolean }>`
     display: flex;
     justify-content: start;
     align-items: start;
+    align-content: start;
     flex-wrap: wrap;
   }
 
@@ -43,17 +44,22 @@ export const CenterSection = styled.section`
   flex-grow: 0.85;
   padding-top: 1rem;
   padding-left: 1rem;
+  min-width: 400px;
 `;
 
 export const RightSection = styled.section`
-  flex-basis: 20%;
-  flex-grow: 0.15;
-  flex-shrink: 1;
-
   padding-top: 1rem;
   padding-left: 1rem;
 
-  max-width: 60%;
+  max-width: 500px;
+
+  margin: 0 auto;
+
+  @media screen and (max-width: 700px){
+    margin: 0 auto;
+    max-width: 700px;
+  }
+  
 `;
 
 export const StyledButton = styled(IconButton)`
