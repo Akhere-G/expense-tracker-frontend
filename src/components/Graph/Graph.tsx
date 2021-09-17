@@ -47,7 +47,7 @@ const Graph: FC<{ categories: Category[]; data: number[] }> = ({
   }, [categories, data]);
 
   if (data.length === 0) {
-    return <></>
+    return <></>;
   }
   return (
     <Container>
