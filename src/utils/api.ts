@@ -8,7 +8,7 @@ export interface FetchTransactions {
   total: number;
 }
 
-export interface AddTransaction {
+export interface TransactionResponse {
   transaction: Transaction;
 }
 export const getDomain = () =>
@@ -28,7 +28,7 @@ export const fetchTransactions = async (token: string) =>
   });
 
 export const addTransaction = async (token: string, transaction: Transaction) =>
-  await axios.post<AddTransaction>(
+  await axios.post<TransactionResponse>(
     `${getDomain()}/api/transactions`,
     transaction,
     {
@@ -37,3 +37,15 @@ export const addTransaction = async (token: string, transaction: Transaction) =>
       },
     }
   );
+
+  
+export const updateTransaction = async (token: string, transaction: Transaction) =>
+await axios.patch<TransactionResponse>(
+  `${getDomain()}/api/transactions/${transaction._id}`,
+  transaction,
+  {
+    headers: {
+      Authorization: token,
+    },
+  }
+);
