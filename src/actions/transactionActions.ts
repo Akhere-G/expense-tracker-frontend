@@ -64,12 +64,34 @@ export const actionCreators = {
     type: SET_MESSAGE,
     payload: { message },
   }),
-  addTransaction: (
-    transaction: Transaction
-  ): Actions[typeof ADD_TRANSACTION] => ({
-    type: ADD_TRANSACTION,
-    payload: { transaction },
-  }),
+  addTransaction:
+    (transaction: Transaction) =>
+    async (dispatch: Dispatch<RootAction>, getState: GetState) => {
+      try {
+        const { user } = getState();
+        const { token } = user;
+
+        if (!token) {
+          dispatch(
+            actionCreators.setMessage("You need to log in or register.")
+          );
+          return Promise.resolve();
+        }
+
+        const response = await api.addTransaction(token, transaction);
+        const responseTransaction = response.data.transaction;
+
+        dispatch({
+          type: ADD_TRANSACTION,
+          payload: { transaction: responseTransaction },
+        });
+      } catch (err: any) {
+        const message = err?.message || "Could not get transactions.";
+
+        dispatch(actionCreators.setMessage(message));
+      }
+    },
+
   updateTransaction: (
     transaction: Transaction
   ): Actions[typeof UPDATE_TRANSACTION] => ({
@@ -89,15 +111,16 @@ export const actionCreators = {
         const { token } = user;
 
         if (!token) {
-          return dispatch(
+          dispatch(
             actionCreators.setMessage("You need to log in or register.")
           );
+          return Promise.resolve();
         }
 
         const response = await api.fetchTransactions(token);
         const { transactions } = response.data;
 
-        return dispatch(actionCreators.setTransactions(transactions));
+        dispatch(actionCreators.setTransactions(transactions));
       } catch (err: any) {
         const message = err?.message || "Could not get transactions.";
 
