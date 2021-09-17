@@ -27,7 +27,7 @@ const initialState: TransactionState = {
 
 const updateTransaction =
   (newTransaction: Transaction) => (transaction: Transaction) => {
-    if (transaction.id === newTransaction.id) {
+    if (transaction._id === newTransaction._id) {
       return { ...transaction, ...newTransaction };
     }
     return transaction;
@@ -82,7 +82,7 @@ export const transactionReducer = (
         ...state,
         transactions: [
           ...state.transactions,
-          { ...action.payload.transaction, id: uuidv4() },
+          { ...action.payload.transaction },
         ],
         balance: addToBalance(state.balance, action.payload.transaction),
       };
@@ -93,7 +93,7 @@ export const transactionReducer = (
         transactions: state.transactions.map(updateTransaction(newTransaction)),
         balance: updateBalance(
           state.balance,
-          state.transactions.find((t) => t.id === newTransaction.id)!,
+          state.transactions.find((t) => t._id === newTransaction._id)!,
           newTransaction
         ),
       };
@@ -101,7 +101,7 @@ export const transactionReducer = (
       return {
         ...state,
         transactions: state.transactions.filter(
-          (t) => t.id !== action.payload.transaction.id
+          (t) => t._id !== action.payload.transaction._id
         ),
         balance: removeFromBalance(state.balance, action.payload.transaction),
       };

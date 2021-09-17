@@ -32,7 +32,7 @@ const Transactions: FC<{ transactions: ITransaction[] }> = ({
         </tr>
         {transactions.map((transaction, index) => (
           <Transaction
-            key={transaction.id}
+            key={transaction._id}
             {...transaction}
             hideSeparator={index === transactions.length - 1}
           />

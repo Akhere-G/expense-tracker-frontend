@@ -55,11 +55,10 @@ export const RightSection = styled.section`
 
   margin: 0 auto;
 
-  @media screen and (max-width: 700px){
+  @media screen and (max-width: 700px) {
     margin: 0 auto;
     max-width: 700px;
   }
-  
 `;
 
 export const StyledButton = styled(IconButton)`

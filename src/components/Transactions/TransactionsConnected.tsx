@@ -11,7 +11,7 @@ import { RootState } from "../../reducers/rootReducer";
 
 const initialTransactions: Transaction[] = [
   {
-    id: "1",
+    _id: "1",
     amount: "50",
     type: "expense",
     description: "New Jeans",
@@ -19,7 +19,7 @@ const initialTransactions: Transaction[] = [
     date: "2021-08-01",
   },
   {
-    id: "2",
+    _id: "2",
     amount: "10",
     type: "income",
     description: "Birthday gift",
@@ -27,7 +27,7 @@ const initialTransactions: Transaction[] = [
     date: "2021-08-05",
   },
   {
-    id: "3",
+    _id: "3",
     amount: "15",
     type: "expense",
     description: "Shopping",
@@ -35,7 +35,7 @@ const initialTransactions: Transaction[] = [
     date: "2021-08-10",
   },
   {
-    id: "4",
+    _id: "4",
     amount: "400",
     type: "income",
     description: "Work payment",
@@ -43,7 +43,7 @@ const initialTransactions: Transaction[] = [
     date: "2021-08-12",
   },
   {
-    id: "5",
+    _id: "5",
     amount: "10",
     type: "expense",
     description: "New Headphones",
@@ -51,7 +51,7 @@ const initialTransactions: Transaction[] = [
     date: "2021-08-12",
   },
   {
-    id: "6",
+    _id: "6",
     amount: "40",
     type: "expense",
     description: "Phone bill",
@@ -59,7 +59,7 @@ const initialTransactions: Transaction[] = [
     date: "2021-08-15",
   },
   {
-    id: "7",
+    _id: "7",
     amount: "100",
     type: "expense",
     description: "Rent came",
@@ -67,7 +67,7 @@ const initialTransactions: Transaction[] = [
     date: "2021-08-18",
   },
   {
-    id: "8",
+    _id: "8",
     amount: "40",
     type: "expense",
     description: "BBQ at the park",
@@ -75,7 +75,7 @@ const initialTransactions: Transaction[] = [
     date: "2021-08-19",
   },
   {
-    id: "9",
+    _id: "9",
     amount: "70",
     type: "expense",
     description: "Tube money",
@@ -83,7 +83,7 @@ const initialTransactions: Transaction[] = [
     date: "2021-08-22",
   },
   {
-    id: "10",
+    _id: "10",
     amount: "10",
     type: "expense",
     description: "Water and gas bill",

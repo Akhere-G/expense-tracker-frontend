@@ -1,5 +1,5 @@
 export type Transaction = {
-  id: string;
+  _id: string;
   amount: string;
   type: string;
   category: Category;
