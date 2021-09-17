@@ -1,6 +1,5 @@
-export const toDateInputValue = () => {
-  const local = new Date();
-  return local.toJSON().slice(0, 10);
+export const toDateInputValue = (date: Date = new Date()) => {
+  return date.toJSON().slice(0, 10);
 };
 
 export const isInDevelopment = () =>

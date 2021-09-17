@@ -12,8 +12,17 @@ const initialTransaction = {
   type: "expense",
   category: Category.Groceries,
   description: "",
-
   date: toDateInputValue(),
+};
+
+const getInitialTransaction = (transaction?: Transaction) => {
+  if (transaction) {
+    return {
+      ...transaction,
+      date: toDateInputValue(new Date(transaction.date)),
+    };
+  }
+  return initialTransaction;
 };
 
 interface ErrorMessages {
@@ -25,7 +34,7 @@ const TransactionFormConnected: FC<{
   closeModal?: () => void;
 }> = ({ transactionToUpdate, closeModal }) => {
   const [formData, setFormData] = useState<Transaction>(
-    transactionToUpdate || initialTransaction
+    getInitialTransaction(transactionToUpdate)
   );
   const [errorMessages, setErrorMessages] = useState<ErrorMessages>({});
 
@@ -110,8 +119,9 @@ const TransactionFormConnected: FC<{
   const addTransaction = (formData: Transaction) =>
     dispatch(actionCreators.addTransaction(formData));
 
-  const updateTransaction = (formData: Transaction) =>
+  const updateTransaction = (formData: Transaction) => {
     dispatch(actionCreators.updateTransaction(formData));
+  };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
