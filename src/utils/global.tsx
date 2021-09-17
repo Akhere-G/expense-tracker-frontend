@@ -153,6 +153,7 @@ export const ButtonGroup = styled.div`
     margin-right: 1rem;
   }
 
+  justify-content: center;
   @media screen and (max-width: 800px) {
     flex-direction: column;
 
