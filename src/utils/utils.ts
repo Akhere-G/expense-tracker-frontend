@@ -4,3 +4,8 @@ export const toDateInputValue = (date: Date = new Date()) => {
 
 export const isInDevelopment = () =>
   !process.env.NODE_ENV || process.env.NODE_ENV === "development";
+
+export const range = (x: number) =>
+  Array(5)
+    .fill(1)
+    .map((t, i) => i);

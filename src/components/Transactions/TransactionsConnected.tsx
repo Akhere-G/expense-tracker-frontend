@@ -10,15 +10,15 @@ import { RootState } from "../../reducers/rootReducer";
 const TransactionsConnected = () => {
   const dispatch = useDispatch();
 
-  const transactions = useSelector(
-    (state: RootState) => state.transaction.transactions
+  const { transactions, isLoading } = useSelector(
+    (state: RootState) => state.transaction
   );
 
   useEffect(() => {
     dispatch(actionCreators.fetchTransactions());
   }, [dispatch]);
 
-  return <Transactions transactions={transactions} />;
+  return <Transactions transactions={transactions} isLoading={isLoading} />;
 };
 
 export default TransactionsConnected;
