@@ -51,3 +51,14 @@ export const updateTransaction = async (
       },
     }
   );
+
+export const deleteTransaction = async (token: string, id: string) => {
+  await axios.delete<TransactionResponse>(
+    `${getDomain()}/api.transactions/${id}`,
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+};
