@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Form } from "./TransactionForm.styled";
-import { FormGroup } from "../../utils/global";
+import { FormGroup, ErrorBanner } from "../../utils/global";
 import { TextField, Button } from "@material-ui/core";
 import { Options, Transaction } from "../../utils/types";
 
@@ -12,6 +12,8 @@ interface Props {
     [key: string]: string;
   };
   isUpdateForm: boolean;
+  errorMessage: string;
+  isLoading: boolean;
 }
 
 const TransactionForm: FC<Props> = ({
@@ -20,10 +22,13 @@ const TransactionForm: FC<Props> = ({
   updateFormData,
   errorMessages,
   isUpdateForm,
+  errorMessage,
+  isLoading,
 }) => {
   return (
     <Form onSubmit={onSubmit} isUpdateForm={isUpdateForm}>
       <h2>{isUpdateForm ? "Update" : "Add"} Transaction</h2>
+      <ErrorBanner key={errorMessage}>{errorMessage || ""}</ErrorBanner>
       <FormGroup>
         <TextField
           fullWidth
@@ -103,6 +108,7 @@ const TransactionForm: FC<Props> = ({
         color="primary"
         variant="contained"
         style={{ margin: "1rem" }}
+        disabled={isLoading}
       >
         {isUpdateForm ? "Update" : "Add"} transaction
       </Button>

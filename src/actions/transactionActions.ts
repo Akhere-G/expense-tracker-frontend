@@ -65,9 +65,10 @@ export const actionCreators = {
     payload: { message },
   }),
   addTransaction:
-    (transaction: Transaction) =>
+    (transaction: Transaction, next?: Function) =>
     async (dispatch: Dispatch<RootAction>, getState: GetState) => {
       try {
+        dispatch(actionCreators.setIsLoading(true));
         const { user } = getState();
         const { token } = user;
 
@@ -85,16 +86,21 @@ export const actionCreators = {
           type: ADD_TRANSACTION,
           payload: { transaction: responseTransaction },
         });
+        dispatch(actionCreators.setMessage(""));
+        next && next();
       } catch (err: any) {
         const message = err?.message || "Could not get transactions.";
 
         dispatch(actionCreators.setMessage(message));
+      } finally {
+        dispatch(actionCreators.setIsLoading(false));
       }
     },
   updateTransaction:
-    (transaction: Transaction) =>
+    (transaction: Transaction, next?: Function) =>
     async (dispatch: Dispatch<RootAction>, getState: GetState) => {
       try {
+        dispatch(actionCreators.setIsLoading(true));
         const { user } = getState();
         const { token } = user;
 
@@ -112,42 +118,53 @@ export const actionCreators = {
           type: UPDATE_TRANSACTION,
           payload: { transaction: responseTransaction },
         });
+        dispatch(actionCreators.setMessage(""));
+        next && next();
       } catch (err: any) {
         const message = err?.message || "Could not get transactions.";
 
         dispatch(actionCreators.setMessage(message));
+      } finally {
+        dispatch(actionCreators.setIsLoading(false));
       }
-      },
-      deleteTransaction:
-      (transaction: Transaction) =>
-      async (dispatch: Dispatch<RootAction>, getState: GetState) => {
-        try {
-          const { user } = getState();
-          const { token } = user;
-  
-          if (!token) {
-            dispatch(
-              actionCreators.setMessage("You need to log in or register.")
-            );
-            return Promise.resolve();
-          }
-  
-          const response = await api.deleteTransaction(token, transaction._id);
-          const responseTransaction = response.data.transaction;
-  
-          dispatch({
-            type: DELETE_TRANSACTION,
-            payload: { transaction: responseTransaction },
-          });
-        } catch (err: any) {
-          const message = err?.message || "Could not get transactions.";
-  
-          dispatch(actionCreators.setMessage(message));
-        }
-      },
-  fetchTransactions:
-    () => async (dispatch: Dispatch<RootAction>, getState: GetState) => {
+    },
+  deleteTransaction:
+    (transaction: Transaction, next?: Function) =>
+    async (dispatch: Dispatch<RootAction>, getState: GetState) => {
       try {
+        dispatch(actionCreators.setIsLoading(true));
+        const { user } = getState();
+        const { token } = user;
+
+        if (!token) {
+          dispatch(
+            actionCreators.setMessage("You need to log in or register.")
+          );
+          return Promise.resolve();
+        }
+
+        const response = await api.deleteTransaction(token, transaction._id);
+        const responseTransaction = response.data.transaction;
+
+        dispatch({
+          type: DELETE_TRANSACTION,
+          payload: { transaction: responseTransaction },
+        });
+        dispatch(actionCreators.setMessage(""));
+        next && next();
+      } catch (err: any) {
+        const message = err?.message || "Could not get transactions.";
+
+        dispatch(actionCreators.setMessage(message));
+      } finally {
+        dispatch(actionCreators.setIsLoading(false));
+      }
+    },
+  fetchTransactions:
+    (next?: Function) =>
+    async (dispatch: Dispatch<RootAction>, getState: GetState) => {
+      try {
+        dispatch(actionCreators.setIsLoading(true));
         const { user } = getState();
         const { token } = user;
 
@@ -162,10 +179,14 @@ export const actionCreators = {
         const { transactions } = response.data;
 
         dispatch(actionCreators.setTransactions(transactions));
+        dispatch(actionCreators.setMessage(""));
+        next && next();
       } catch (err: any) {
         const message = err?.message || "Could not get transactions.";
 
         dispatch(actionCreators.setMessage(message));
+      } finally {
+        dispatch(actionCreators.setIsLoading(false));
       }
     },
 };

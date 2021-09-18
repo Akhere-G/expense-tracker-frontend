@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../actions/transactionActions";
 import TransactionForm from "./TransactionForm";
-
+import { RootState } from "../../reducers/rootReducer";
 import React, { FC, useState, useEffect, useCallback, useRef } from "react";
 import { toDateInputValue } from "../../utils/utils";
 import { Transaction, Category } from "../../utils/types";
@@ -38,6 +38,12 @@ const TransactionFormConnected: FC<{
     getInitialTransaction(transactionToUpdate)
   );
   const [errorMessages, setErrorMessages] = useState<ErrorMessages>({});
+
+  const dispatch = useDispatch();
+
+  const { message, isLoading } = useSelector(
+    (state: RootState) => state.transaction
+  );
 
   let hasRendered = useRef(false);
 
@@ -102,6 +108,10 @@ const TransactionFormConnected: FC<{
   }, []);
 
   useEffect(() => {
+    dispatch(actionCreators.setMessage(""));
+  }, [dispatch]);
+
+  useEffect(() => {
     isValidAmount(formData.amount);
   }, [formData.amount, isValidAmount]);
 
@@ -117,11 +127,11 @@ const TransactionFormConnected: FC<{
     setFormData((prev) => ({ ...prev, ...currentState }));
   };
 
-  const addTransaction = (formData: Transaction) =>
-    dispatch(actionCreators.addTransaction(formData));
+  const addTransaction = (formData: Transaction, next: Function) =>
+    dispatch(actionCreators.addTransaction(formData, next));
 
-  const updateTransaction = (formData: Transaction) => {
-    dispatch(actionCreators.updateTransaction(formData));
+  const updateTransaction = (formData: Transaction, next: Function) => {
+    dispatch(actionCreators.updateTransaction(formData, next));
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -132,15 +142,17 @@ const TransactionFormConnected: FC<{
       isValidDescription(description) &&
       isValidDate(date)
     ) {
-      transactionToUpdate
-        ? updateTransaction(formData)
-        : addTransaction(formData);
-      updateFormData({ ...initialTransaction });
-      closeModal && closeModal();
+      hasRendered.current = false;
+      const next = () => {
+        if (!message) {
+          updateFormData({ ...initialTransaction });
+          closeModal && closeModal();
+        }
+      };
+      const action = transactionToUpdate ? updateTransaction : addTransaction;
+      action(formData, next);
     }
   };
-
-  const dispatch = useDispatch();
 
   return (
     <TransactionForm
@@ -149,6 +161,8 @@ const TransactionFormConnected: FC<{
       onSubmit={onSubmit}
       updateFormData={updateFormData}
       isUpdateForm={!!transactionToUpdate}
+      errorMessage={message}
+      isLoading={isLoading}
     />
   );
 };
