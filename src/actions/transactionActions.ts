@@ -117,13 +117,34 @@ export const actionCreators = {
 
         dispatch(actionCreators.setMessage(message));
       }
-    },
-  deleteTransaction: (
-    transaction: Transaction
-  ): Actions[typeof DELETE_TRANSACTION] => ({
-    type: DELETE_TRANSACTION,
-    payload: { transaction },
-  }),
+      },
+      deleteTransaction:
+      (transaction: Transaction) =>
+      async (dispatch: Dispatch<RootAction>, getState: GetState) => {
+        try {
+          const { user } = getState();
+          const { token } = user;
+  
+          if (!token) {
+            dispatch(
+              actionCreators.setMessage("You need to log in or register.")
+            );
+            return Promise.resolve();
+          }
+  
+          const response = await api.deleteTransaction(token, transaction._id);
+          const responseTransaction = response.data.transaction;
+  
+          dispatch({
+            type: DELETE_TRANSACTION,
+            payload: { transaction: responseTransaction },
+          });
+        } catch (err: any) {
+          const message = err?.message || "Could not get transactions.";
+  
+          dispatch(actionCreators.setMessage(message));
+        }
+      },
   fetchTransactions:
     () => async (dispatch: Dispatch<RootAction>, getState: GetState) => {
       try {
