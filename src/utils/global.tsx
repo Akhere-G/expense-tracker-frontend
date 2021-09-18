@@ -44,7 +44,6 @@ export const CenterSection = styled.section`
   flex-grow: 0.85;
   padding-top: 1rem;
   padding-left: 1rem;
-  min-width: 400px;
 `;
 
 export const RightSection = styled.section`

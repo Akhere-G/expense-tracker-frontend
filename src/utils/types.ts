@@ -1,7 +1,7 @@
 export type Transaction = {
   _id: string;
   amount: string;
-  type: string;
+  type: "income" | "expense";
   category: Category;
   description: string;
   date: string;

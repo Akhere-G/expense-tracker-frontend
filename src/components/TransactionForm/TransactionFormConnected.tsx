@@ -6,7 +6,7 @@ import React, { FC, useState, useEffect, useCallback, useRef } from "react";
 import { toDateInputValue } from "../../utils/utils";
 import { Transaction, Category } from "../../utils/types";
 
-const initialTransaction = {
+const initialTransaction: Transaction = {
   _id: "0",
   amount: "",
   type: "expense",
@@ -19,6 +19,7 @@ const getInitialTransaction = (transaction?: Transaction) => {
   if (transaction) {
     return {
       ...transaction,
+      amount: transaction.amount.toString(),
       date: toDateInputValue(new Date(transaction.date)),
     };
   }
