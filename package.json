@@ -19,6 +19,7 @@
     "react-chartjs-2": "^3.0.4",
     "react-dom": "^17.0.2",
     "react-google-login": "^5.2.2",
+    "react-helmet": "^6.1.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
@@ -51,6 +52,7 @@
   "devDependencies": {
     "@types/chart.js": "^2.9.34",
     "@types/react-chartjs-2": "^2.5.7",
+    "@types/react-helmet": "^6.1.2",
     "@types/react-router-dom": "^5.1.9",
     "@types/redux-thunk": "^2.1.0",
     "@types/styled-components": "^5.1.13",

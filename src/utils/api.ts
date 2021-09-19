@@ -12,7 +12,7 @@ export interface TransactionResponse {
   transaction: Transaction;
 }
 export const getDomain = () =>
-  isInDevelopment() ? "http://localhost:5000" : process.env.REACT_APP_PROD_API;
+  isInDevelopment() ? "http://localhost:5000" : window.origin;
 
 export const login = async (loginData: LoginData) =>
   await axios.post(`${getDomain()}/api/auth/login`, loginData);

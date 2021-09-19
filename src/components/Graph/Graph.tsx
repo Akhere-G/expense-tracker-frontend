@@ -32,7 +32,7 @@ const Graph: FC<{ categories: Category[]; data: number[] }> = ({
   const [chartData, setChartData] = useState({});
 
   useEffect(() => {
-    const newData: Chart.ChartData = {
+    const newData = {
       labels: categories,
       datasets: [
         {

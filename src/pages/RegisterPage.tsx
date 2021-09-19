@@ -1,8 +1,13 @@
 import React from "react";
-import { Login } from "../components/";
+import { Login, Head } from "../components/";
 
 const RegisterPage = () => {
-  return <Login isRegister />;
+  return (
+    <>
+      <Head title="Expense Tracker | Register"/>
+      <Login isRegister />
+    </>
+  );
 };
 
 export default RegisterPage;

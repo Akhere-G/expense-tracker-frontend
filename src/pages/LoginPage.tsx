@@ -1,6 +1,10 @@
 import React from "react";
-import { Login } from "../components";
+import { Login, Head } from "../components";
 
-const LoginPage = () => <Login />;
+const LoginPage = () => (
+  <>
+    <Head title="Expense Tracker | Login"/>
+    <Login />
+  </>)
 
 export default LoginPage;
