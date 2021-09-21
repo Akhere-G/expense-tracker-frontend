@@ -5,7 +5,7 @@ import { Main } from "../utils/global";
 const NotFoundPage = () => (
   <>
     <Main>
-      <Head title="Expense Tracker | Not Found"/>
+      <Head title="Expense Tracker | Not Found" />
       <NotFound />
     </Main>
   </>

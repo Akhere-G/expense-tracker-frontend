@@ -6,7 +6,7 @@ import {
   Transactions,
   Modal,
   Graph,
-  Head
+  Head,
 } from "../components";
 import {
   Main,
@@ -18,7 +18,7 @@ import {
 const Home = () => {
   return (
     <Main paddingRight>
-      <Head title="Expense Tracker | Transactions"/>
+      <Head title="Expense Tracker | Transactions" />
       <LeftSection>
         <Balance />
         <TransactionForm />
