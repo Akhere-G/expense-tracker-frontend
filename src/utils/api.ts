@@ -11,9 +11,11 @@ export interface FetchTransactions {
 export interface TransactionResponse {
   transaction: Transaction;
 }
-export const getDomain = () =>
-  !isInDevelopment() ? "http://localhost:5000" : process.env.REACT_APP_PROD_API;
-
+export const getDomain = () => {
+  const isDev = isInDevelopment();
+  console.log("printing", isDev, process.env.REACT_APP_PROD_API, process.env);
+  return isDev ? "http://localhost:5000" : process.env.REACT_APP_PROD_API;
+};
 export const login = async (loginData: LoginData) =>
   await axios.post(`${getDomain()}/api/auth/login`, loginData);
 
