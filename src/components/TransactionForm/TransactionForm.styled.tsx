@@ -9,8 +9,6 @@ export const Form = styled.form<{ isUpdateForm?: boolean }>`
   display: flex;
   flex-direction: column;
 
-  height: 100%;
-
   & > button {
     margin: 0.25rem 0rem 0rem !important;
   }

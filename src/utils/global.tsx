@@ -33,31 +33,55 @@ export const Main = styled.main<{ paddingRight?: boolean }>`
   }
 `;
 
-export const LeftSection = styled.section`
-  flex-grow: 0.25;
-  padding-top: 1rem;
-  padding-left: 1rem;
-`;
+export const Grid = styled.main`
+  display: grid;
+  width: 100%;
+  padding: 1rem;
+  row-gap: 1rem;
+  column-gap: 1rem;
 
-export const CenterSection = styled.section`
-  flex-basis: 30%;
-  flex-grow: 0.85;
-  padding-top: 1rem;
-  padding-left: 1rem;
-`;
+  align-content: end;
 
-export const RightSection = styled.section`
-  padding-top: 1rem;
-  padding-left: 1rem;
+  grid-template-areas:
+    "a"
+    "b"
+    "c"
+    "c";
 
-  max-width: 500px;
-
-  margin: 0 auto;
-
-  @media screen and (max-width: 700px) {
-    margin: 0 auto;
-    max-width: 700px;
+  @media screen and (min-width: 700px) {
+    grid-template-areas:
+      "a c c c c"
+      "a c c c c"
+      "b c c c c"
+      ". c c c c";
   }
+
+  @media screen and (min-width: 1000px) {
+    grid-template-areas:
+      "a c c c b"
+      "a c c c b"
+      ". c c c ."
+      ". c c c .";
+  }
+`;
+
+export const SectionA = styled.section`
+  grid-area: a;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  & > * {
+    max-height: min-content;
+  }
+`;
+
+export const SectionB = styled.section`
+  grid-area: b;
+`;
+
+export const SectionC = styled.section`
+  grid-area: c;
 `;
 
 export const StyledButton = styled(IconButton)`
