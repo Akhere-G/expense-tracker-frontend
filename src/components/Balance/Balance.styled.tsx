@@ -6,7 +6,6 @@ export const Container = styled.section`
   padding: 0.5rem;
   background-color: white;
   box-shadow: var(--box-shadow);
-  width: min-content;
   text-align: center;
   & > h2 {
     font-weight: 300;
