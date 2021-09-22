@@ -43,13 +43,13 @@ export const UnderText = styled.p`
 
 export const SkeletonTransaction = styled.tr`
   height: 40px;
-  width: 100%;
   position: relative;
 `;
 
-export const SkeletonSection = styled.td<{ width: string }>`
+export const SkeletonSection = styled.td<{ width: string, center?: boolean }>`
   width: ${({ width }) => width};
   padding: 0.5rem;
+  transform: ${({ center }) => center ? "translateX(25%)" : ""};
 `;
 
 const flashRight = keyframes`
@@ -87,11 +87,12 @@ export const SkeletonButtonGroup = styled.div`
   & > :first-child {
     margin-right: 0.5rem;
   }
+  justify-content: end;
 `;
 
 export const SkeletonButton = styled.div`
   ${skeletonStyles};
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 100%;
 `;
