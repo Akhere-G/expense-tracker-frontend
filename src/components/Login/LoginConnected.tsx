@@ -9,6 +9,7 @@ import { actionCreators } from "../../actions/userActions";
 import { RootState } from "../../reducers/rootReducer";
 
 import { LoginData, User } from "../../utils/types";
+import { mapGoogleLoginError } from "../../utils/utils";
 
 const LoginConnected: FC<{ isRegister?: boolean }> = ({ isRegister }) => {
   const [show, setShow] = useState(true);
@@ -30,7 +31,11 @@ const LoginConnected: FC<{ isRegister?: boolean }> = ({ isRegister }) => {
 
     dispatch(actionCreators.loginSuccess(user, token));
   };
-  const onFailure = async (res: any) => console.log(`success`, res);
+
+  const onFailure = async (res: any) => {
+    const errorMessage = mapGoogleLoginError(res.error);
+    dispatch(actionCreators.loginFailure(errorMessage));
+  };
 
   const login = (formData: LoginData) =>
     dispatch(actionCreators.login(formData));

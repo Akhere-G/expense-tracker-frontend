@@ -125,6 +125,7 @@ const Login: FC<Props> = ({
             clientId={clientId}
             onSuccess={onSuccess}
             onFailure={onFailure}
+            prompt="consent"
             render={(props: GoogleLoginProps) => (
               <Button
                 startIcon={<Icon />}

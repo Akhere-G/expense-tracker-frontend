@@ -52,3 +52,14 @@ export interface LoginData {
   firstName?: string;
   lastName?: string;
 }
+
+export enum GoogleLoginError {
+  access_denied = "access_denied",
+  idpiframe_initialization_failed = "idpiframe_initialization_failed",
+  immediate_failed = "immediate_failed",
+  popup_closed_by_user = "popup_closed_by_user",
+}
+
+export interface Map {
+  [key: string]: string;
+}
