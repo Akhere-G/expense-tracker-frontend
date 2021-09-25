@@ -4,13 +4,13 @@ import TransactionForm from "./TransactionForm";
 import { RootState } from "../../reducers/rootReducer";
 import React, { FC, useState, useEffect, useCallback, useRef } from "react";
 import { toDateInputValue } from "../../utils/utils";
-import { Transaction, Category } from "../../utils/types";
+import { Transaction } from "../../utils/types";
 
 const initialTransaction: Transaction = {
   _id: "0",
   amount: "",
   type: "expense",
-  category: Category.Groceries,
+  category: "Groceries",
   description: "",
   date: toDateInputValue(),
 };

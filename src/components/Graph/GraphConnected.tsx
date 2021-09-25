@@ -2,7 +2,7 @@ import React from "react";
 import Graph from "./Graph";
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducers/rootReducer";
-import { Category, Transaction } from "../../utils/types";
+import { Transaction } from "../../utils/types";
 
 interface GraphData {
   [key: string]: number;
@@ -18,7 +18,7 @@ const getGraphData = (transactions: Transaction[]) => {
     return acc;
   }, {} as GraphData);
 
-  const categories = Object.keys(graphData) as Category[];
+  const categories = Object.keys(graphData);
   const data = Object.values(graphData);
 
   return { categories, data };

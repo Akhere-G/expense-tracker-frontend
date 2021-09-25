@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Form } from "./TransactionForm.styled";
 import { FormGroup, ErrorBanner } from "../../utils/global";
 import { TextField, Button } from "@material-ui/core";
-import { Options, Transaction } from "../../utils/types";
+import { Transaction } from "../../utils/types";
 
 interface Props {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -29,7 +29,7 @@ const TransactionForm: FC<Props> = ({
     <Form onSubmit={onSubmit} isUpdateForm={isUpdateForm}>
       <h2>{isUpdateForm ? "Update" : "Add"} Transaction</h2>
       <ErrorBanner key={errorMessage}>{errorMessage || ""}</ErrorBanner>
-      <FormGroup>
+      <FormGroup style={{ paddingTop: "1rem" }}>
         <TextField
           fullWidth
           label="Amount (£)"
@@ -60,19 +60,12 @@ const TransactionForm: FC<Props> = ({
       <FormGroup>
         <TextField
           fullWidth
-          select
           label="Category"
           value={formData.category}
           onChange={(e: React.ChangeEvent<any>) =>
             updateFormData({ category: e.target.value })
           }
-        >
-          {Options.map((o) => (
-            <option key={o} value={o}>
-              {o}
-            </option>
-          ))}
-        </TextField>
+        ></TextField>
       </FormGroup>
 
       <FormGroup>

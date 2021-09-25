@@ -1,31 +1,24 @@
 import React, { FC, useState, useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { Category } from "../../utils/types";
 import { Container } from "./Graph.styled";
 
-const mapToColor = (category: Category) => {
-  const mapColor = {
-    [Category.Clothes]: "#FF8800",
-    [Category.Gifts]: "#FFFF00",
-    [Category.Groceries]: "#008800",
-    [Category.Invoice]: "#00FF44",
-    [Category.Misc]: "#00FFFF",
-    [Category.Phone]: "#119EED",
-    [Category.Rent]: "#112DED",
-    [Category.Social]: "#ff00EE",
-    [Category.Travel]: "#8800ff",
-    [Category.Utilities]: "#FF0000",
-  };
-  return mapColor[category];
-};
+const mapToColor = (categories: string[]) =>
+  categories.map((category, index) => {
+    const options = categories.length;
+    const diffInHue = 360 / options;
+    const hue = (index % options) * diffInHue;
 
-const getColors = (categories: Category[]) => {
-  const colors: string[] = categories.map(mapToColor);
+    console.log(hue);
+    return `hsl(${hue}, 100%, 60%)`;
+  });
+
+const getColors = (categories: string[]) => {
+  const colors: string[] = mapToColor(categories);
 
   return colors;
 };
 
-const Graph: FC<{ categories: Category[]; data: number[] }> = ({
+const Graph: FC<{ categories: string[]; data: number[] }> = ({
   categories,
   data,
 }) => {

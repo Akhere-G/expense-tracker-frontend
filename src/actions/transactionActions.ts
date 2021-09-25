@@ -47,7 +47,7 @@ export type TransactionAction = Actions[keyof Actions] | { type: "@@INIT" };
 
 const getErrorMessage = (errorObj: any, defaultMessage: string) => {
   return errorObj?.response?.data?.message || defaultMessage;
-}
+};
 
 export const actionCreators = {
   setIsLoading: (isLoading: boolean): Actions[typeof SET_IS_LOADING] => ({
@@ -93,7 +93,7 @@ export const actionCreators = {
         dispatch(actionCreators.setMessage(""));
         next && next();
       } catch (err: any) {
-        const message = getErrorMessage(err,"Could not add transaction.");
+        const message = getErrorMessage(err, "Could not add transaction.");
 
         dispatch(actionCreators.setMessage(message));
       } finally {
