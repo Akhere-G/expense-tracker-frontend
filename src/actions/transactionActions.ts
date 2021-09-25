@@ -45,6 +45,10 @@ type Actions = {
 
 export type TransactionAction = Actions[keyof Actions] | { type: "@@INIT" };
 
+const getErrorMessage = (errorObj: any, defaultMessage: string) => {
+  return errorObj?.response?.data?.message || defaultMessage;
+}
+
 export const actionCreators = {
   setIsLoading: (isLoading: boolean): Actions[typeof SET_IS_LOADING] => ({
     type: SET_IS_LOADING,
@@ -89,7 +93,7 @@ export const actionCreators = {
         dispatch(actionCreators.setMessage(""));
         next && next();
       } catch (err: any) {
-        const message = err?.message || "Could not get transactions.";
+        const message = getErrorMessage(err,"Could not add transaction.");
 
         dispatch(actionCreators.setMessage(message));
       } finally {
@@ -121,7 +125,7 @@ export const actionCreators = {
         dispatch(actionCreators.setMessage(""));
         next && next();
       } catch (err: any) {
-        const message = err?.message || "Could not get transactions.";
+        const message = getErrorMessage(err, "Could not update transaction.");
 
         dispatch(actionCreators.setMessage(message));
       } finally {
@@ -153,7 +157,7 @@ export const actionCreators = {
         dispatch(actionCreators.setMessage(""));
         next && next();
       } catch (err: any) {
-        const message = err?.message || "Could not get transactions.";
+        const message = getErrorMessage(err, "Could not delete transaction.");
 
         dispatch(actionCreators.setMessage(message));
       } finally {
@@ -182,7 +186,7 @@ export const actionCreators = {
         dispatch(actionCreators.setMessage(""));
         next && next();
       } catch (err: any) {
-        const message = err?.message || "Could not get transactions.";
+        const message = getErrorMessage(err, "Could not get transactions.");
 
         dispatch(actionCreators.setMessage(message));
       } finally {

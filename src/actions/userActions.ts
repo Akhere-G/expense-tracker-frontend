@@ -37,6 +37,7 @@ interface LoginResponse {
   user: User;
   token: string;
 }
+
 export const actionCreators = {
   loginSuccess: (user: User, token: string): Actions[typeof LOGIN_SUCCESS] => ({
     type: LOGIN_SUCCESS,
