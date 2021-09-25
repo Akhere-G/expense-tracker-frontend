@@ -12,7 +12,7 @@ const Skeleton = () => (
   <SkeletonTransaction>
     <SkeletonSection width="33%">
       <SkeletonText width="40%" />
-      <SkeletonText width="50%"/>
+      <SkeletonText width="50%" />
     </SkeletonSection>
     <SkeletonSection width="33%" center>
       <SkeletonText width="60%" />

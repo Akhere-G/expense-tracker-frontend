@@ -14,7 +14,9 @@ const Transactions: FC<{ transactions: ITransaction[]; isLoading: boolean }> =
         <tbody>
           <tr>
             <td>
-              <h2 style={{ padding: "0.5rem 1rem 0rem 0.5rem" }}>Transactions</h2>
+              <h2 style={{ padding: "0.5rem 1rem 0rem 0.5rem" }}>
+                Transactions
+              </h2>
             </td>
           </tr>
           {isLoading && range(5).map((i) => <Skeleton key={i} />)}

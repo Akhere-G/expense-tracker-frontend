@@ -46,10 +46,10 @@ export const SkeletonTransaction = styled.tr`
   position: relative;
 `;
 
-export const SkeletonSection = styled.td<{ width: string, center?: boolean }>`
+export const SkeletonSection = styled.td<{ width: string; center?: boolean }>`
   width: ${({ width }) => width};
   padding: 0.5rem;
-  transform: ${({ center }) => center ? "translateX(25%)" : ""};
+  transform: ${({ center }) => (center ? "translateX(25%)" : "")};
 `;
 
 const flashRight = keyframes`
