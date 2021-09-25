@@ -8,33 +8,24 @@ import {
   StyledLink,
 } from "../../utils/global";
 import { LoginData } from "../../utils/types";
-import { GoogleLogin } from "react-google-login";
 
 import Icon from "./Icon";
 
 export interface Props {
-  googleLoginProps: {
-    onSuccess: (res: any) => void;
-    onFailure: (res: any) => void;
-    clientId: string;
-    googleIcon: any;
-  };
+  loaded: boolean;
+  signIn: () => void;
   login: (loginData: LoginData) => void;
   errorMessage: string | null;
-  register?: null | ((register: LoginData) => void);
+  register: null | ((register: LoginData) => void);
   show: boolean;
   switchForm: () => void;
-}
-
-interface GoogleLoginProps {
-  onClick: () => void;
-  disabled?: boolean | undefined;
 }
 
 const initialFormData: LoginData = { email: "", password: "" };
 
 const Login: FC<Props> = ({
-  googleLoginProps,
+  loaded,
+  signIn,
   login,
   errorMessage,
   register,
@@ -46,8 +37,6 @@ const Login: FC<Props> = ({
   const updateFormData = (currentState: Partial<LoginData>) => {
     setFormData((prev) => ({ ...prev, ...currentState }));
   };
-
-  const { onSuccess, onFailure, clientId } = googleLoginProps;
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -121,22 +110,15 @@ const Login: FC<Props> = ({
           <Button color="primary" variant="contained" type="submit">
             {register ? "Register" : "Log In"}
           </Button>
-          <GoogleLogin
-            clientId={clientId}
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            prompt="consent"
-            render={(props: GoogleLoginProps) => (
-              <Button
-                startIcon={<Icon />}
-                variant="contained"
-                color="primary"
-                {...props}
-              >
-                Sign in with Google
-              </Button>
-            )}
-          />
+          <Button
+            startIcon={<Icon />}
+            variant="contained"
+            color="primary"
+            onClick={signIn}
+            disabled={!loaded}
+          >
+            Sign in with Google
+          </Button>
         </ButtonGroup>
         <FormGroup alignRight paddingAmount="0rem">
           <StyledLink

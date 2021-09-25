@@ -1,7 +1,6 @@
 import React, { FC, useState } from "react";
 import Login, { Props } from "./Login";
-import { Lock } from "@material-ui/icons";
-import { GoogleLoginResponse } from "react-google-login";
+import { GoogleLoginResponse, useGoogleLogin } from "react-google-login";
 
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,9 +17,9 @@ const LoginConnected: FC<{ isRegister?: boolean }> = ({ isRegister }) => {
 
   const history = useHistory();
 
-  const onSuccess = (res: GoogleLoginResponse) => {
-    const result = res.profileObj;
-    const token = res.tokenId;
+  const onSuccess = (res: any) => {
+    const result: GoogleLoginResponse["profileObj"] = res.profileObj;
+    const token: string = res.tokenId;
 
     const user: User = {
       email: result.email,
@@ -37,6 +36,14 @@ const LoginConnected: FC<{ isRegister?: boolean }> = ({ isRegister }) => {
     dispatch(actionCreators.loginFailure(errorMessage));
   };
 
+  const { loaded, signIn } = useGoogleLogin({
+    clientId: process.env.REACT_APP_CLIENT_ID || "",
+    onSuccess,
+    onFailure,
+    prompt: "consent",
+    cookiePolicy: "single_host_origin",
+  });
+
   const login = (formData: LoginData) =>
     dispatch(actionCreators.login(formData));
 
@@ -51,12 +58,8 @@ const LoginConnected: FC<{ isRegister?: boolean }> = ({ isRegister }) => {
   };
 
   const props: Props = {
-    googleLoginProps: {
-      googleIcon: Lock,
-      clientId: process.env.REACT_APP_CLIENT_ID || "",
-      onSuccess,
-      onFailure,
-    },
+    loaded,
+    signIn,
     errorMessage: message,
     register: isRegister ? register : null,
     login,
