@@ -29,7 +29,7 @@ const TransactionForm: FC<Props> = ({
     <Form onSubmit={onSubmit} isUpdateForm={isUpdateForm}>
       <h2>{isUpdateForm ? "Update" : "Add"} Transaction</h2>
       <ErrorBanner key={errorMessage}>{errorMessage || ""}</ErrorBanner>
-      <FormGroup style={{ paddingTop: "1rem" }}>
+      <FormGroup>
         <TextField
           fullWidth
           label="Amount (£)"

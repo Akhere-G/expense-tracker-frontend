@@ -8,7 +8,6 @@ const mapToColor = (categories: string[]) =>
     const diffInHue = 360 / options;
     const hue = (index % options) * diffInHue;
 
-    console.log(hue);
     return `hsl(${hue}, 100%, 60%)`;
   });
 
@@ -30,9 +29,8 @@ const Graph: FC<{ categories: string[]; data: number[] }> = ({
       datasets: [
         {
           data,
-          borderWidth: 2,
+          borderWidth: 1,
           backgroundColor: getColors(categories),
-          borderColor: "transparent",
         },
       ],
     };
