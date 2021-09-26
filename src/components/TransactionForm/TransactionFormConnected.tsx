@@ -58,10 +58,10 @@ const TransactionFormConnected: FC<{
         amount: "Amount is not a number",
       }));
       return false;
-    } else if (Number(amount) < 0) {
+    } else if (Number(amount) < 0.01) {
       setErrorMessages((prev) => ({
         ...prev,
-        amount: "Amount is less than zero",
+        amount: "Amount must be at least £0.01",
       }));
       return false;
     } else {
