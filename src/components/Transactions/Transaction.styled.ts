@@ -1,6 +1,6 @@
 import styled, { keyframes, css } from "styled-components";
 
-import { floatUpAnimation } from "../../utils/global";
+import { floatUpAnimation, paperStyles } from "../../utils/global";
 
 export const TransactionList = styled.table`
   width: 100%;
@@ -11,13 +11,14 @@ export const TransactionList = styled.table`
 
 export const TransactionContainer = styled.tr`
   position: relative;
+
   & td {
     padding-left: 0.5rem;
     padding-bottom: 0.25rem;
   }
 
   & td p {
-    ${floatUpAnimation}
+    ${floatUpAnimation};
   }
 `;
 
@@ -39,6 +40,32 @@ export const UnderText = styled.p`
   font-size: 0.75rem;
   color: var(--secondary-font);
   ${floatUpAnimation}
+`;
+
+export const ButtonLargeScreen = styled.div<{ showModal: boolean }>`
+  display: inline;
+  @media screen and (max-width: 600px) {
+    position: absolute;
+    width: max-content;
+    ${paperStyles};
+    padding: 0.5rem;
+    right: 40%;
+    top: ${({ showModal }) => (showModal ? "80%" : "0%")};
+    z-index: 1;
+    opacity: ${({ showModal }) => (showModal ? 1 : 0)};
+    pointer-events: ${({ showModal }) => (showModal ? "all" : "none")};
+    transition: var(--transition);
+  }
+`;
+
+export const ButtonSmallScreen = styled.div`
+  @media screen and (min-width: 601px) {
+    display: none;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  position: relative;
 `;
 
 export const SkeletonTransaction = styled.tr`

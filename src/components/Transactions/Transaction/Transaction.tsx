@@ -1,14 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Transaction as ITransaction } from "../../../utils/types";
 import {
   UnderText,
   Type,
   Separator,
   TransactionContainer,
+  ButtonContainer,
+  ButtonLargeScreen,
+  ButtonSmallScreen,
 } from "../Transaction.styled";
 
 import { StyledButton } from "../../../utils/global";
-import { Close, Edit } from "@material-ui/icons";
+import { Close, Edit, Menu } from "@material-ui/icons";
 
 export interface Props extends ITransaction {
   hideSeparator?: boolean;
@@ -34,6 +37,10 @@ const Transaction: FC<Props> = ({
   deleteTransaction,
   updateTransaction,
 }) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const smallScreen = window.screen.width < 600;
+
   return (
     <TransactionContainer>
       <td>
@@ -47,34 +54,47 @@ const Transaction: FC<Props> = ({
         <UnderText key={category}>{category}</UnderText>
       </td>
       <td style={{ textAlign: "right" }}>
-        <StyledButton
-          onClick={() =>
-            updateTransaction({
-              _id,
-              amount,
-              category,
-              date,
-              type,
-              description,
-            })
-          }
-        >
-          <Edit fontSize="small" />
-        </StyledButton>
-        <StyledButton
-          onClick={() =>
-            deleteTransaction({
-              _id,
-              amount,
-              category,
-              date,
-              type,
-              description,
-            })
-          }
-        >
-          <Close fontSize="small" />
-        </StyledButton>
+        <ButtonContainer>
+          <ButtonLargeScreen showModal={showModal}>
+            <StyledButton
+              disabled={!showModal && smallScreen}
+              onClick={() => {
+                setShowModal((prev) => !prev);
+                updateTransaction({
+                  _id,
+                  amount,
+                  category,
+                  date,
+                  type,
+                  description,
+                });
+              }}
+            >
+              <Edit fontSize="small" />
+            </StyledButton>
+            <StyledButton
+              disabled={!showModal && smallScreen}
+              onClick={() => {
+                setShowModal((prev) => !prev);
+                deleteTransaction({
+                  _id,
+                  amount,
+                  category,
+                  date,
+                  type,
+                  description,
+                });
+              }}
+            >
+              <Close fontSize="small" />
+            </StyledButton>
+          </ButtonLargeScreen>
+          <ButtonSmallScreen>
+            <StyledButton onClick={() => setShowModal((prev) => !prev)}>
+              <Menu />
+            </StyledButton>
+          </ButtonSmallScreen>
+        </ButtonContainer>
       </td>
       <Separator hide={hideSeparator} />
     </TransactionContainer>
