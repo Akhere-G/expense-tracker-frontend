@@ -7,9 +7,6 @@ type GetState = () => RootState;
 export const SET_IS_LOADING = "transaction/SET_IS_LOADING";
 export const SET_TRANSACTIONS = "transaction/SET_TRANSACTIONS";
 export const SET_MESSAGE = "transactions/SET_MESSAGE";
-export const ADD_TRANSACTION = "transaction/ADD_TRANSACTION";
-export const UPDATE_TRANSACTION = "transaction/UPDATE_TRANSACTION";
-export const DELETE_TRANSACTION = "transaction/DELETE_TRANSACTION";
 export const SET_BALANCE = "transaction/SET_BALANCE";
 
 type Actions = {
@@ -28,18 +25,6 @@ type Actions = {
   [SET_MESSAGE]: {
     type: typeof SET_MESSAGE;
     payload: { message: string };
-  };
-  [ADD_TRANSACTION]: {
-    type: typeof ADD_TRANSACTION;
-    payload: { transaction: Transaction };
-  };
-  [UPDATE_TRANSACTION]: {
-    type: typeof UPDATE_TRANSACTION;
-    payload: { transaction: Transaction };
-  };
-  [DELETE_TRANSACTION]: {
-    type: typeof DELETE_TRANSACTION;
-    payload: { transaction: Transaction };
   };
 };
 
@@ -70,113 +55,93 @@ export const actionCreators = {
   }),
   addTransaction:
     (transaction: Transaction, next?: Function) =>
-    async (dispatch: Dispatch<RootAction>, getState: GetState) => {
+    async (dispatch: Dispatch<Promise<RootAction>>, getState: GetState) => {
       try {
         dispatch(actionCreators.setIsLoading(true));
         const { user } = getState();
         const { token } = user;
 
         if (!token) {
-          dispatch(
+          return dispatch(
             actionCreators.setMessage("You need to log in or register.")
           );
-          return Promise.resolve();
         }
 
-        const response = await api.addTransaction(token, transaction);
-        const responseTransaction = response.data.transaction;
+        await api.addTransaction(token, transaction);
 
-        dispatch({
-          type: ADD_TRANSACTION,
-          payload: { transaction: responseTransaction },
-        });
-        dispatch(actionCreators.setMessage(""));
         next && next();
+        dispatch(actionCreators.setMessage(""));
+        return dispatch(actionCreators.fetchTransactions());
       } catch (err: any) {
         const message = getErrorMessage(err, "Could not add transaction.");
 
         dispatch(actionCreators.setMessage(message));
-      } finally {
-        dispatch(actionCreators.setIsLoading(false));
+        return dispatch(actionCreators.setIsLoading(false));
       }
     },
   updateTransaction:
     (transaction: Transaction, next?: Function) =>
-    async (dispatch: Dispatch<RootAction>, getState: GetState) => {
+    async (dispatch: Dispatch<Promise<RootAction>>, getState: GetState) => {
       try {
         dispatch(actionCreators.setIsLoading(true));
         const { user } = getState();
         const { token } = user;
 
         if (!token) {
-          dispatch(
+          return dispatch(
             actionCreators.setMessage("You need to log in or register.")
           );
-          return Promise.resolve();
         }
 
-        const response = await api.updateTransaction(token, transaction);
-        const responseTransaction = response.data.transaction;
-
-        dispatch({
-          type: UPDATE_TRANSACTION,
-          payload: { transaction: responseTransaction },
-        });
-        dispatch(actionCreators.setMessage(""));
+        await api.updateTransaction(token, transaction);
         next && next();
+        dispatch(actionCreators.setMessage(""));
+        return dispatch(actionCreators.fetchTransactions());
       } catch (err: any) {
         const message = getErrorMessage(err, "Could not update transaction.");
 
         dispatch(actionCreators.setMessage(message));
-      } finally {
-        dispatch(actionCreators.setIsLoading(false));
+        return dispatch(actionCreators.setIsLoading(false));
       }
     },
   deleteTransaction:
     (transaction: Transaction, next?: Function) =>
-    async (dispatch: Dispatch<RootAction>, getState: GetState) => {
+    async (dispatch: Dispatch<Promise<RootAction>>, getState: GetState) => {
       try {
         dispatch(actionCreators.setIsLoading(true));
         const { user } = getState();
         const { token } = user;
 
         if (!token) {
-          dispatch(
+          return dispatch(
             actionCreators.setMessage("You need to log in or register.")
           );
-          return Promise.resolve();
         }
 
-        const response = await api.deleteTransaction(token, transaction._id);
-        const responseTransaction = response.data.transaction;
+        await api.deleteTransaction(token, transaction._id);
 
-        dispatch({
-          type: DELETE_TRANSACTION,
-          payload: { transaction: responseTransaction },
-        });
-        dispatch(actionCreators.setMessage(""));
         next && next();
+        dispatch(actionCreators.setMessage(""));
+        return dispatch(actionCreators.fetchTransactions());
       } catch (err: any) {
         const message = getErrorMessage(err, "Could not delete transaction.");
 
         dispatch(actionCreators.setMessage(message));
-      } finally {
-        dispatch(actionCreators.setIsLoading(false));
+        return dispatch(actionCreators.setIsLoading(false));
       }
     },
   fetchTransactions:
     (next?: Function) =>
-    async (dispatch: Dispatch<RootAction>, getState: GetState) => {
+    async (dispatch: Dispatch<Promise<RootAction>>, getState: GetState) => {
       try {
         dispatch(actionCreators.setIsLoading(true));
         const { user } = getState();
         const { token } = user;
 
         if (!token) {
-          dispatch(
+          return dispatch(
             actionCreators.setMessage("You need to log in or register.")
           );
-          return Promise.resolve();
         }
 
         const response = await api.fetchTransactions(token);
@@ -190,7 +155,7 @@ export const actionCreators = {
 
         dispatch(actionCreators.setMessage(message));
       } finally {
-        dispatch(actionCreators.setIsLoading(false));
+        return dispatch(actionCreators.setIsLoading(false));
       }
     },
 };
